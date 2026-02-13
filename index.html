@@ -5,7 +5,6 @@
 <title>For My Buji ❤️</title>
 
 <style>
-
 body{
 margin:0;
 padding:0;
@@ -24,35 +23,48 @@ width:100vw;
 justify-content:center;
 align-items:center;
 flex-direction:column;
+padding:20px;
+box-sizing:border-box;
 }
 
 /* start screen */
 #start{
 display:flex;
-background:linear-gradient(135deg,#ff4b6e,#ff758c);
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
 }
 
 /* buttons */
 button{
-padding:12px 25px;
+padding:14px 28px;
 font-size:18px;
-margin:10px;
+margin:12px;
 border:none;
 border-radius:30px;
 background:white;
 color:#ff4b6e;
+font-weight:bold;
+cursor:pointer;
+transition:transform 0.2s;
+}
+button:hover{
+transform:scale(1.1);
 }
 
 /* letter */
 #letter{
-padding:25px;
-font-size:17px;
+font-size:18px;
 background:black;
 overflow-y:auto;
 line-height:1.6;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:left;
+max-width:700px;
 }
 
-/* full screen video */
+/* video */
 #video{
 width:100vw;
 height:100vh;
@@ -60,10 +72,17 @@ object-fit:cover;
 display:none;
 }
 
-/* final wish */
+/* final */
 #final{
-font-size:28px;
+font-size:20px;
 background:black;
+text-align:center;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+max-width:700px;
 }
 
 /* floating emojis */
@@ -82,7 +101,6 @@ transform:translateY(-10vh);
 opacity:0;
 }
 }
-
 </style>
 </head>
 
@@ -91,208 +109,108 @@ opacity:0;
 <!-- START -->
 <div id="start" class="section" style="display:flex;">
 <h2>Do you love me? ❤️</h2>
-
 <button onclick="showLetter()">YES 💖</button>
 <button id="noBtn" onclick="noClick()">NO 🙈</button>
-
 </div>
-
 
 <!-- LETTER -->
-<div id="letter" class="section">
-
-<p>
-
-My buji (pari),<br><br>
-
-Our story didn’t start with love at first sight—it started with time… and time gently chose you for my heart.<br><br>
-
-Do you remember 2nd January 2024?<br>
-Tarun bhaiya’s birthday.<br>
-The first time I saw you.<br><br>
-
-That day, I didn’t fall for you.<br>
-It was just a quiet curiosity—<br>
-“Oh… who is he?”<br><br>
-
-Time passed slowly, softly.<br>
-Somewhere between teasing, laughing, talking, and just being around you, something inside me started changing. I didn’t understand it at first. I was confused—was it attraction, or was it something more?<br><br>
-
-What truly pulled me towards you was your heart.<br>
-The way you loved your brother.<br>
-The care and respect you showed your sister-in-law.<br>
-So attentive. So gentle. So real.<br>
-I remember thinking, “Awww… how can someone be this caring?”<br><br>
-
-Still, I stopped myself.<br>
-I told my heart no.<br>
-You were my best friend’s brother.<br>
-And from the way you spoke, I believed you had no interest in me anyway.<br><br>
-
-So we stayed there—<br>
-teasing each other, pretending nothing was happening—<br>
-while my heart quietly kept choosing you.<br><br>
-
-Then came 13th April 2025.<br>
-Abhishek’s birthday.<br><br>
-
-That night changed everything.<br><br>
-
-We were drunk.<br>
-We were close.<br>
-We ended up on the sofa—<br>
-me resting on your chest,<br>
-You're holding me.<br><br>
-
-And that was the moment I fell for you.<br><br>
-
-You held me so close to your heart.<br>
-You kept kissing my forehead again and again,<br>
-as if you were scared to lose me.<br>
-As if letting go wasn’t even an option.<br><br>
-
-You could have crossed the line.<br>
-You could have blamed the alcohol.<br>
-But you didn’t.<br><br>
-
-You chose control.<br>
-You chose respect.<br>
-You chose to be a gentleman.<br><br>
-
-That choice made me feel safe.<br>
-That purity made me fall deeper.<br><br>
-
-From there, everything grew naturally.<br>
-Talking. Knowing each other.<br>
-Sharing our past, our present, our thoughts, our fears.<br><br>
-
-Friend.<br>
-Best friend.<br>
-Lover.<br>
-And now… everything.<br><br>
-
-I love how real we are.<br>
-No sugar-coating.<br>
-No fake promises.<br>
-Just honesty, purity, and effort.<br><br>
-
-From stealing time for each other<br>
-to openly make time for us—<br>
-Our bond didn’t rush.<br>
-It grew.<br><br>
-
-After you, everything I ever craved—<br>
-love, care, desire, respect, security—<br>
-I found it all in one person.<br>
-And even more than I dreamed of.<br><br>
-
-I want to cherish you.<br>
-Our bond.<br>
-Every moment that made us us.<br><br>
-
-I want to love you like this forever.<br>
-I want this love to grow every single day.<br>
-I want to fall in love with you again and again—<br>
-every day, every moment—<br>
-the same way I fell for you the very first time.<br><br>
-
-I promise you care when you’re tired.<br>
-Security when you overthink.<br>
-Reassurance when your heart needs it.<br>
-Respect for every version of us.<br><br>
-
-What we share is divine—pure and steady like a heartbeat, meant to live as long as my heart does.<br><br>
-
-Always yours.<br>
-Only yours.<br>
-Your Suyu 🤍
-
-</p>
-
-</div>
-
+<div id="letter" class="section"></div>
 
 <!-- VIDEO -->
 <video id="video">
 <source src="yourvideo.mp4" type="video/mp4">
 </video>
 
-
 <!-- FINAL -->
-<div id="final" class="section">
-<h2>Happy Birthday My Love ❤️</h2>
-<p>You are my forever, my peace, my heart 🎂🌹</p>
-</div>
-
-
+<div id="final" class="section"></div>
 
 <script>
-
-/* cute NO conversion */
+// playful NO button
 function noClick(){
-
 let btn=document.getElementById("noBtn");
 btn.innerHTML="YES 💖";
 btn.onclick=showLetter;
-
+alert("Oops! You have no choice 😏💖");
 }
 
-/* show letter */
+// emojis generator
+function spawnEmojis(){
+let emojis=["❤️","🎈","🌹","💖","🎂","💘","🌺"];
+let e=document.createElement("div");
+e.className="emoji";
+e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+e.style.left=Math.random()*100+"vw";
+e.style.fontSize=(25+Math.random()*40)+"px";
+document.body.appendChild(e);
+setTimeout(()=>{ e.remove(); },6000);
+}
+
+// typewriter effect for letter
+function typeLetter(text, container, callback){
+let i=0;
+let interval=setInterval(()=>{
+container.innerHTML+=text[i];
+i++;
+spawnEmojis();
+if(i>=text.length){
+clearInterval(interval);
+if(callback) callback();
+}
+},30); // adjust typing speed
+}
+
+// show letter section
 function showLetter(){
-
 document.getElementById("start").style.display="none";
-
 let letter=document.getElementById("letter");
 letter.style.display="flex";
+letter.innerHTML="";
 
-/* show video after 20 seconds */
+let text=`My Buji, My Pari,
+
+Our story isn’t about grand gestures or loud words. It lives in the quiet moments — the smiles we share, the laughter that sneaks in, the comfort of just being near you. Somehow, without even realizing, my heart found its home in you.
+
+You care so naturally, love so effortlessly, and in that, I see a beauty that words can barely capture. Being with you feels like coming back to a place I didn’t know I was missing — calm, comforting, real. Every little moment with you makes my world brighter, my heart lighter, and my soul fuller.
+
+I want you to know, no matter what life brings, my heart will always choose you. You are my safe place, my joy, my love — and being yours is the easiest, happiest thing I’ve ever known.
+
+Happy Birthday, my love.
+Always yours. Only yours.
+Suyu ❤️💋
+`;
+
+typeLetter(text, letter, ()=>{
 setTimeout(()=>{
-
 letter.style.display="none";
-
 let video=document.getElementById("video");
 video.style.display="block";
-
 video.play();
-
-video.onended=function(){
-
-video.style.display="none";
-showFinal();
-
-};
-
-},20000);
-
+video.onended=showFinal;
+},2000); // small pause before video
+});
 }
 
-/* final screen */
+// show final section with flirty closing
 function showFinal(){
-
 let final=document.getElementById("final");
 final.style.display="flex";
 
-/* floating emojis */
-let emojis=["❤️","🎂","🎈","🌹","💖","💐"];
+let closingText=`Happy Birthday, my irresistible troublemaker! 🎂💖
 
-setInterval(()=>{
+You’re not just my favorite distraction — you’re my obsession, my partner-in-crime, and the reason my heart races for no reason at all. Every time you smile, my brain forgets how to function… and I love it. 😏
 
-let e=document.createElement("div");
-e.className="emoji";
+I hope your day is as dangerously handsome, fun, and tempting as you are… and yes, that includes a little extra undivided attention from me. I might even steal a kiss or two when you least expect it. 😘
 
-e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+You make every moment feel like mischief wrapped in magic. I can’t promise to behave today — after all, birthdays are for spoiling, teasing… and maybe a little trouble together. 😉
 
-e.style.left=Math.random()*100+"vw";
-e.style.fontSize=(20+Math.random()*40)+"px";
+Love you more than cake… and trust me, I really mean that. ❤️
+You’re my favorite distraction, my sweetest addiction, and the reason I can’t stop smiling.
+Here’s to you, to us, and to every cheeky, flirty, unforgettable moment we’re yet to make. 🔥💖`;
 
-document.body.appendChild(e);
-
-setTimeout(()=>{e.remove();},6000);
-
-},300);
-
+final.innerHTML="";
+typeLetter(closingText, final);
+setInterval(spawnEmojis,200); // continuous floating emojis
 }
-
 </script>
 
 </body>
