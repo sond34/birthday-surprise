@@ -20,19 +20,13 @@ body{
   color:white;
 }
 
-/* Romantic dark overlay + heartbeat glow */
+/* Dark romantic overlay */
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.55);
-  animation:heartbeatBg 4s infinite;
+  background:rgba(0,0,0,0.6);
   z-index:-1;
-}
-
-@keyframes heartbeatBg{
-  0%,100%{background:rgba(0,0,0,0.55);}
-  50%{background:rgba(40,0,20,0.55);}
 }
 
 /* Sections */
@@ -45,8 +39,6 @@ body::before{
   flex-direction:column;
   text-align:center;
   padding:20px;
-  opacity:1;
-  transition:opacity 0.6s ease;
 }
 
 .hidden{
@@ -56,10 +48,10 @@ body::before{
 /* Glass card */
 .glass{
   background:rgba(255,255,255,0.18);
-  backdrop-filter:blur(14px);
+  backdrop-filter:blur(12px);
   padding:36px;
   border-radius:24px;
-  box-shadow:0 0 40px rgba(255,0,150,0.6);
+  box-shadow:0 0 35px rgba(255,0,150,0.6);
   max-width:460px;
 }
 
@@ -74,9 +66,7 @@ button{
   transition:0.3s;
 }
 
-button:hover{
-  transform:scale(1.1);
-}
+button:hover{ transform:scale(1.1); }
 
 .yes{ background:#ff4da6; color:white; }
 .no{ background:white; color:#ff4da6; }
@@ -95,33 +85,54 @@ video{
   animation:float 6s linear infinite;
   pointer-events:none;
 }
-
 @keyframes float{
-  0%{transform:translateY(100vh); opacity:0;}
-  100%{transform:translateY(-10vh); opacity:1;}
+  0%{transform:translateY(100vh);opacity:0;}
+  100%{transform:translateY(-10vh);opacity:1;}
 }
 
-/* Falling petals */
-.petal{
-  position:absolute;
-  top:-40px;
-  animation:fall 10s linear forwards;
-  pointer-events:none;
+/* 🧩 Puzzle */
+.puzzle-board{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  max-width:320px;
+  margin:20px auto;
 }
 
-@keyframes fall{
-  0%{transform:translateX(0) translateY(0) rotate(0deg);}
-  100%{transform:translateX(80px) translateY(120vh) rotate(360deg);}
+.puzzle-piece{
+  width:90px;
+  height:55px;
+  background:linear-gradient(135deg,#ff99cc,#ff4d88);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  font-weight:bold;
+  cursor:pointer;
+  user-select:none;
+  box-shadow:0 0 12px rgba(255,77,136,0.6);
+  transition:0.3s;
 }
 
-/* Heartbeat text */
-.heartbeat{
-  animation:heartbeatText 2s infinite;
+.puzzle-piece.fixed{
+  background:linear-gradient(135deg,#ff4d88,#ff0066);
+  cursor:default;
+  box-shadow:0 0 20px rgba(255,0,102,0.8);
 }
 
-@keyframes heartbeatText{
-  0%,100%{transform:scale(1);}
-  50%{transform:scale(1.05);}
+.puzzle-final{
+  display:none;
+  margin-top:25px;
+  font-size:20px;
+  color:#ff0066;
+  animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 6px #ff99cc;}
+  to{text-shadow:0 0 22px #ff0066;}
 }
 </style>
 </head>
@@ -136,12 +147,9 @@ video{
 <!-- 1️⃣ START -->
 <div id="start" class="section">
   <div class="glass">
-    <h2>Before we go further… 💗</h2>
-    <p style="margin:15px 0;">
-      This isn’t just a surprise.<br>
-      It’s a piece of my heart.
-    </p>
-    <p>Will you open it? 😌</p>
+    <h2>Before we continue… 💕</h2>
+    <p style="margin:15px 0;">Be honest with me 😌</p>
+    <p>Do you love me more than everything else? 😏</p>
     <br>
     <button class="yes" onclick="goLetter()">YES 💖</button>
     <button class="no" onclick="moveNo(this)">NO 🙈</button>
@@ -154,13 +162,9 @@ video{
     <h2>For You ❤️</h2>
     <p style="margin-top:15px;">
       Somewhere between all the ordinary days,<br>
-      you quietly became my favorite part of life.<br><br>
-
-      Your smile calms my storms.<br>
-      Your presence feels like home.<br><br>
-
-      Loving you isn’t something I try to do —<br>
-      it’s something my heart does naturally.
+      you became my favorite part of life.<br><br>
+      Your smile feels like home.<br>
+      Loving you feels natural.
     </p>
     <br>
     <button class="yes" onclick="goVideo()">Next 🎥</button>
@@ -171,7 +175,7 @@ video{
 <div id="videoSection" class="section hidden">
   <div class="glass">
     <h2>Our Little World 💞</h2>
-    <video muted playsinline controls onplay="lowerMusic()" onpause="restoreMusic()" onended="restoreMusic()">
+    <video muted playsinline controls>
       <source src="yourvideo.mp4" type="video/mp4">
     </video>
     <br>
@@ -181,70 +185,70 @@ video{
 
 <!-- 4️⃣ FINAL -->
 <div id="final" class="section hidden">
-  <div class="glass heartbeat">
+  <div class="glass">
     <h2>Forever & Always ❤️</h2>
 
     <p style="margin-top:15px;">
-      I don’t promise perfection.<br>
-      I promise honesty, effort, and love.<br><br>
-
-      I promise to choose you —<br>
-      on easy days, hard days,<br>
-      and every day in between.
+      I choose you — today, tomorrow, always.<br>
+      You are my peace, my happiness, my forever.
     </p>
 
     <br>
 
-    <h3>🎂 Countdown to Your Birthday 🎂</h3>
-    <p id="countdown" style="margin-top:10px; font-size:18px;"></p>
+    <h3>🎂 Countdown to 18 March 🎂</h3>
+    <p id="countdown" style="margin-top:10px;"></p>
 
     <br>
 
-    <button class="yes" onclick="showSecret()">Unlock Something Only You Deserve 🔐</button>
+    <button class="yes" onclick="showSecret()">Unlock Secret Message 🔐</button>
 
     <div id="secretMessage" style="display:none; margin-top:20px;">
       <p>
-        My love… ❤️<br><br>
-        If love had a sound,<br>
-        it would be your laughter.<br>
-        If love had a place,<br>
-        it would be wherever you are.<br><br>
-
-        Thank you for existing.<br>
-        Thank you for being you.<br><br>
-
-        I love you — quietly, deeply, endlessly.
+        If love had a shape,<br>
+        it would look like you.<br><br>
+        You are deeply, endlessly loved ❤️
       </p>
+    </div>
+
+    <!-- 🧩 PUZZLE -->
+    <div style="margin-top:35px;">
+      <h3 style="color:#ff66aa;">🧩 Tap to Assemble Your Birthday Wish</h3>
+      <div id="puzzleBoard" class="puzzle-board"></div>
+
+      <div id="puzzleFinal" class="puzzle-final">
+        🎉 HAPPY BIRTHDAY MY LOVE 🎉<br><br>
+        On this 18th March,<br>
+        may your smile never fade,<br>
+        your heart stay light,<br>
+        and your life overflow with love ❤️<br><br>
+        You are my always 💖
+      </div>
     </div>
 
   </div>
 </div>
 
 <script>
-const music = document.getElementById("music");
 
 /* Navigation */
 function goLetter(){
-  switchSection("start","letter");
-  music.volume = 0.5;
-  music.play();
+  hideShow("start","letter");
+  document.getElementById("music").volume=0.5;
+  document.getElementById("music").play();
   createHearts();
-  createPetals();
 }
 
-function goVideo(){
-  switchSection("letter","videoSection");
-}
+function goVideo(){ hideShow("letter","videoSection"); }
 
 function goFinal(){
-  switchSection("videoSection","final");
+  hideShow("videoSection","final");
   startCountdown();
+  createPuzzle();
 }
 
-/* Section switch with fade */
-function switchSection(from,to){
-  document.getElementById(from).classList.add("hidden");
-  document.getElementById(to).classList.remove("hidden");
+function hideShow(a,b){
+  document.getElementById(a).classList.add("hidden");
+  document.getElementById(b).classList.remove("hidden");
 }
 
 /* NO button runs */
@@ -256,8 +260,8 @@ function moveNo(btn){
 
 /* Hearts */
 function createHearts(){
-  let count=0;
-  let i=setInterval(()=>{
+  let i=0;
+  let inter=setInterval(()=>{
     let h=document.createElement("div");
     h.className="heart";
     h.innerHTML="💖";
@@ -265,56 +269,72 @@ function createHearts(){
     h.style.fontSize=(Math.random()*20+15)+"px";
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),6000);
-    if(++count>30) clearInterval(i);
+    if(++i>30) clearInterval(inter);
   },200);
 }
 
-/* Petals */
-function createPetals(){
-  for(let i=0;i<15;i++){
+/* Secret */
+function showSecret(){
+  document.getElementById("secretMessage").style.display="block";
+}
+
+/* 🎂 Countdown */
+function startCountdown(){
+  let birthday=new Date(2026,2,18);
+  setInterval(()=>{
+    let d=birthday-new Date();
+    if(d<0){
+      document.getElementById("countdown").innerHTML="🎉 Happy Birthday My Love 🎉";
+      return;
+    }
+    let days=Math.floor(d/86400000);
+    let hrs=Math.floor(d%86400000/3600000);
+    let min=Math.floor(d%3600000/60000);
+    let sec=Math.floor(d%60000/1000);
+    document.getElementById("countdown").innerHTML=
+      `${days} Days ${hrs} Hours ${min} Minutes ${sec} Seconds`;
+  },1000);
+}
+
+/* 🧩 Puzzle */
+const puzzleWords=["Happy","Birthday","My","Beautiful","Love","18th","March","Forever ❤️"];
+let solved=0;
+
+function createPuzzle(){
+  solved=0;
+  let board=document.getElementById("puzzleBoard");
+  board.innerHTML="";
+  [...puzzleWords].sort(()=>Math.random()-0.5).forEach(w=>{
     let p=document.createElement("div");
-    p.className="petal";
-    p.innerHTML="🌸";
-    p.style.left=Math.random()*100+"vw";
-    p.style.fontSize=(Math.random()*14+14)+"px";
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),10000);
+    p.className="puzzle-piece";
+    p.innerText=w;
+    p.onclick=function(){
+      if(p.classList.contains("fixed"))return;
+      p.classList.add("fixed");
+      solved++;
+      if(solved===puzzleWords.length){
+        document.getElementById("puzzleFinal").style.display="block";
+        confetti();
+      }
+    };
+    board.appendChild(p);
+  });
+}
+
+function confetti(){
+  for(let i=0;i<25;i++){
+    let c=document.createElement("div");
+    c.innerHTML="🎉";
+    c.style.position="fixed";
+    c.style.left=Math.random()*100+"%";
+    c.style.top="-20px";
+    c.style.fontSize="22px";
+    c.style.animation="float 3s linear forwards";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
   }
 }
 
-/* Music control during video */
-function lowerMusic(){ music.volume = 0.15; }
-function restoreMusic(){ music.volume = 0.5; }
-
-/* Secret */
-function showSecret(){
-  let s=document.getElementById("secretMessage");
-  s.style.display="block";
-  s.style.opacity=0;
-  let o=0;
-  let f=setInterval(()=>{
-    if(o<1){ o+=0.05; s.style.opacity=o; }
-    else clearInterval(f);
-  },40);
-}
-
-/* Countdown – 18 March */
-function startCountdown(){
-  let birthday = new Date(2026,2,18);
-  setInterval(()=>{
-    let diff=birthday-new Date();
-    if(diff<0){
-      document.getElementById("countdown").innerHTML="🎉 Happy Birthday, My Love 🎉";
-      return;
-    }
-    let d=Math.floor(diff/86400000);
-    let h=Math.floor(diff%86400000/3600000);
-    let m=Math.floor(diff%3600000/60000);
-    let s=Math.floor(diff%60000/1000);
-    document.getElementById("countdown").innerHTML=
-      `${d} Days ${h} Hours ${m} Minutes ${s} Seconds`;
-  },1000);
-}
 </script>
 
 </body>
