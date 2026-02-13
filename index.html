@@ -6,120 +6,116 @@
 
 <style>
 body{
-margin:0;
-padding:0;
-background:black;
-font-family:Arial;
-text-align:center;
-color:white;
-overflow:hidden;
+  margin:0;
+  padding:0;
+  background:black;
+  font-family:Arial;
+  text-align:center;
+  color:white;
+  overflow:hidden;
 }
 
 /* sections */
 .section{
-display:none;
-height:100vh;
-width:100vw;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-padding:20px;
-box-sizing:border-box;
+  display:none;
+  height:100vh;
+  width:100vw;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  padding:20px;
+  box-sizing:border-box;
 }
 
 /* start screen */
 #start{
-display:flex;
-background:linear-gradient(135deg,#ff758c,#ff7eb3);
-flex-direction:column;
+  display:flex;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  flex-direction:column;
 }
 
 /* buttons */
 button{
-padding:14px 28px;
-font-size:18px;
-margin:12px;
-border:none;
-border-radius:30px;
-background:white;
-color:#ff4b6e;
-font-weight:bold;
-cursor:pointer;
-transition:transform 0.2s;
+  padding:14px 28px;
+  font-size:18px;
+  margin:12px;
+  border:none;
+  border-radius:30px;
+  background:white;
+  color:#ff4b6e;
+  font-weight:bold;
+  cursor:pointer;
+  transition:transform 0.2s;
 }
 button:hover{
-transform:scale(1.1);
+  transform:scale(1.1);
 }
 
 /* NO button shake animation */
 #noBtn:hover{
-animation: shake 0.5s;
+  animation: shake 0.5s;
 }
-
 @keyframes shake{
-0% { transform: translateX(0px); }
-20% { transform: translateX(-5px); }
-40% { transform: translateX(5px); }
-60% { transform: translateX(-5px); }
-80% { transform: translateX(5px); }
-100% { transform: translateX(0px); }
+  0% { transform: translateX(0px); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+  100% { transform: translateX(0px); }
 }
 
 /* YES button playful hover */
 #yesBtn:hover{
-transform: scale(1.1) rotate(-2deg);
+  transform: scale(1.1) rotate(-2deg);
 }
 
 /* letter */
 #letter{
-font-size:18px;
-background:black;
-overflow-y:auto;
-line-height:1.6;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:left;
-max-width:700px;
+  font-size:18px;
+  background:black url('kiss_cartoon.png') center bottom no-repeat;
+  background-size:contain;
+  overflow-y:auto;
+  line-height:1.6;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:left;
+  max-width:700px;
+  max-height:90vh;
+  padding-bottom:200px; /* for image spacing */
 }
 
 /* video */
 #video{
-width:100vw;
-height:100vh;
-object-fit:cover;
-display:none;
+  width:100vw;
+  height:100vh;
+  object-fit:cover;
+  display:none;
 }
 
 /* final */
 #final{
-font-size:20px;
-background:black;
-text-align:center;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-padding:20px;
-max-width:700px;
+  font-size:20px;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  max-width:700px;
+  overflow:hidden;
 }
 
 /* floating emojis */
 .emoji{
-position:absolute;
-animation:floatUp 6s linear infinite;
+  position:absolute;
+  animation:floatUp 6s linear infinite;
 }
-
 @keyframes floatUp{
-from{
-transform:translateY(100vh);
-opacity:1;
-}
-to{
-transform:translateY(-10vh);
-opacity:0;
-}
+  from{ transform:translateY(100vh); opacity:1; }
+  to{ transform:translateY(-10vh); opacity:0; }
 }
 </style>
 </head>
@@ -128,9 +124,9 @@ opacity:0;
 
 <!-- START -->
 <div id="start" class="section" style="display:flex;">
-<h2>Are you ready to admit… you’re mine? 😏❤️</h2>
-<button id="yesBtn" onclick="showLetter()">Obvs, duh! 💘</button>
-<button id="noBtn" onclick="noClick()">Try saying NO… I dare you 😈</button>
+  <h2>Are you ready to admit… you’re mine? 😏❤️</h2>
+  <button id="yesBtn" onclick="showLetter()">Obvs, duh! 💘😉</button>
+  <button id="noBtn" onclick="noClick()">Try saying NO… I dare you 😈😉</button>
 </div>
 
 <!-- LETTER -->
@@ -138,7 +134,7 @@ opacity:0;
 
 <!-- VIDEO -->
 <video id="video">
-<source src="yourvideo.mp4" type="video/mp4">
+  <source src="yourvideo.mp4" type="video/mp4">
 </video>
 
 <!-- FINAL -->
@@ -166,17 +162,19 @@ function spawnEmojis(){
 }
 
 // typewriter effect for letter
+let letterCounter=0;
 function typeLetter(text, container, callback){
     let i=0;
     let interval=setInterval(()=>{
         container.innerHTML+=text[i];
         i++;
-        spawnEmojis();
+        letterCounter++;
+        if(letterCounter % 3 === 0) spawnEmojis();
         if(i>=text.length){
             clearInterval(interval);
             if(callback) callback();
         }
-    },30); // typing speed
+    },30);
 }
 
 // show letter section
@@ -198,37 +196,28 @@ Happy Birthday, my love.
 Always yours. Only yours.
 Suyu ❤️💋`;
 
-    typeLetter(text, letter, ()=>{
-        // after letter finishes, small pause then show video
+    typeLetter(text, letter, ()=> {
         setTimeout(()=>{
             letter.style.display="none";
             let video=document.getElementById("video");
             video.style.display="block";
             video.play();
             video.onended = showFinal;
-        },2000); 
+        },2000);
     });
 }
 
-// show final section with flirty closing
+// show final section instantly with emojis
 function showFinal(){
     let final=document.getElementById("final");
     final.style.display="flex";
 
-    let closingText=`Happy Birthday, my irresistible troublemaker! 🎂💖
+    final.innerHTML=`Happy Birthday, my irresistible troublemaker! 🎂💖<br><br>
+You’re my obsession, my partner-in-crime, and the reason my heart races for no reason at all. Every time you smile, my brain forgets how to function… and I love it. 😏<br><br>
+I hope your day is as dangerously fun and tempting as you are… maybe a little extra attention from me 😉<br><br>
+Love you more than cake… and trust me, I really mean that. ❤️`;
 
-You’re not just my favorite distraction — you’re my obsession, my partner-in-crime, and the reason my heart races for no reason at all. Every time you smile, my brain forgets how to function… and I love it. 😏
-
-I hope your day is as dangerously handsome, fun, and tempting as you are… and yes, that includes a little extra undivided attention from me. I might even steal a kiss or two when you least expect it. 😘
-
-You make every moment feel like mischief wrapped in magic. I can’t promise to behave today — after all, birthdays are for spoiling, teasing… and maybe a little trouble together. 😉
-
-Love you more than cake… and trust me, I really mean that. ❤️
-You’re my favorite distraction, my sweetest addiction, and the reason I can’t stop smiling.
-Here’s to you, to us, and to every cheeky, flirty, unforgettable moment we’re yet to make. 🔥💖`;
-
-    final.innerHTML="";
-    typeLetter(closingText, final);
+    // spawn emojis faster
     setInterval(spawnEmojis,200);
 }
 </script>
