@@ -9,18 +9,13 @@ body {
   text-align: center;
   font-family: 'Georgia', serif;
   background: linear-gradient(to bottom right, #ffe6f0, #fff5f8);
-  margin: 50px;
-  overflow-x: hidden;
+  margin: 60px;
 }
 
-/* Typing text */
-#typing {
-  font-size: 26px;
-  margin-bottom: 20px;
-  min-height: 40px;
+h1 {
+  font-size: 32px;
 }
 
-/* Buttons */
 button {
   padding: 12px 28px;
   font-size: 18px;
@@ -28,6 +23,7 @@ button {
   cursor: pointer;
   border-radius: 30px;
   border: none;
+  transition: 0.3s;
 }
 
 #yesBtn {
@@ -35,17 +31,21 @@ button {
   color: white;
 }
 
+#yesBtn:hover {
+  background-color: #e63956;
+}
+
 #noBtn {
   background-color: #888;
   color: white;
+  position: relative;
 }
 
-/* Letter box */
 #letter {
   display: none;
   margin: 40px auto;
-  width: 85%;
-  max-width: 800px;
+  width: 80%;
+  max-width: 750px;
   background: white;
   padding: 35px;
   border-radius: 15px;
@@ -59,46 +59,21 @@ button {
   from {opacity: 0;}
   to {opacity: 1;}
 }
-
-/* Floating hearts */
-.heart {
-  position: fixed;
-  bottom: -10px;
-  font-size: 20px;
-  animation: floatUp 6s linear infinite;
-}
-
-@keyframes floatUp {
-  from {transform: translateY(0); opacity: 1;}
-  to {transform: translateY(-800px); opacity: 0;}
-}
-
-#counter {
-  margin-top: 15px;
-  font-size: 18px;
-  color: #e63956;
-}
 </style>
 </head>
 
 <body>
 
-<!-- Background Music -->
-<audio id="music" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
+<h1>My Buji 🤍</h1>
+<h2>Before you open this… I need one honest answer.</h2>
+<p>Are you ready to feel how deeply you are loved today? 💌</p>
 
-<div id="typing"></div>
-
-<p>Are you ready to open your heart today? 💌</p>
-
-<button id="yesBtn" onclick="startLove()">Yes, always 🤍</button>
+<button id="yesBtn" onclick="showLetter()">Yes, always 🤍</button>
 <button id="noBtn" onclick="changeNo()">Not sure 🥺</button>
-
-<div id="counter"></div>
 
 <div id="letter">
 
+<!-- YOUR FULL LETTER GOES HERE -->
 <h2>My Buji (Pari),</h2>
 
 <p>
@@ -107,79 +82,34 @@ Our story didn’t start with love at first sight—it started with time… and 
 
 <p>
 Do you remember 2nd January 2024? Tarun bhaiya’s birthday. The first time I saw you.
-That day, I didn’t fall for you.
-It was just a quiet curiosity—“Oh… who is he?”
+That day, I didn’t fall for you. It was just a quiet curiosity— “Oh… who is he?”
 </p>
 
 <p>
-Somewhere between teasing, laughing, talking, and just being around you,
-my heart quietly kept choosing you.
+Time passed slowly, softly...
 </p>
 
 <p>
-Then came 13th April 2025.
-You chose respect.
-You chose control.
-You chose to be a gentleman.
-That choice made me feel safe.
-That purity made me fall deeper.
+(Keep your full letter here exactly as you wrote it 🤍)
 </p>
 
-<p>
-Friend. Best friend. Lover. And now… everything.
-</p>
-
-<p>
-After you, everything I ever craved—love, care, desire, respect, security—
-I found it all in one person.
-</p>
-
-<p>
-I promise care when you’re tired.
-Security when you overthink.
-Reassurance when your heart needs it.
-Respect for every version of us.
-</p>
-
-<p>
-What we share is divine—steady like a heartbeat.
-</p>
-
-<p>
-Always yours. Only yours.<br>
-<b>Your Suyu 🤍</b>
-</p>
+<p><b>Always yours. Only yours.<br>Your Suyu 🤍</b></p>
 
 </div>
 
 <script>
 
-/* Typing Effect */
-let text = "My Buji 🤍 Happy Birthday…";
-let i = 0;
-function typingEffect() {
-  if (i < text.length) {
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typingEffect, 80);
-  }
-}
-typingEffect();
-
-/* Start Love Experience */
-function startLove() {
+function showLetter() {
   document.getElementById("letter").style.display = "block";
-  document.getElementById("music").play();
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 }
 
-/* No Button Emotional Trap */
 let noTexts = [
   "Are you sure? 🥺",
   "Think again Buji 😌",
-  "You know you love me 🤍",
-  "Don't break my heart 😭",
-  "Okay fine… click Yes 😌"
+  "You know the answer is yes 🤍",
+  "Don’t break my heart 😭",
+  "Last chance mister 👀"
 ];
 
 let count = 0;
@@ -192,27 +122,6 @@ function changeNo() {
     document.getElementById("noBtn").style.display = "none";
   }
 }
-
-/* Floating Hearts */
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "🤍";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-  document.body.appendChild(heart);
-  setTimeout(() => { heart.remove(); }, 6000);
-}
-setInterval(createHeart, 500);
-
-/* Days Counter */
-let startDate = new Date("January 2, 2024");
-let today = new Date();
-let diffTime = today - startDate;
-let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-document.getElementById("counter").innerHTML =
-"We've shared " + diffDays + " days of our story 🤍";
 
 </script>
 
