@@ -31,6 +31,7 @@ box-sizing:border-box;
 #start{
 display:flex;
 background:linear-gradient(135deg,#ff758c,#ff7eb3);
+flex-direction:column;
 }
 
 /* buttons */
@@ -50,168 +51,25 @@ button:hover{
 transform:scale(1.1);
 }
 
+/* NO button shake animation */
+#noBtn:hover{
+animation: shake 0.5s;
+}
+
+@keyframes shake{
+0% { transform: translateX(0px); }
+20% { transform: translateX(-5px); }
+40% { transform: translateX(5px); }
+60% { transform: translateX(-5px); }
+80% { transform: translateX(5px); }
+100% { transform: translateX(0px); }
+}
+
+/* YES button playful hover */
+#yesBtn:hover{
+transform: scale(1.1) rotate(-2deg);
+}
+
 /* letter */
 #letter{
-font-size:18px;
-background:black;
-overflow-y:auto;
-line-height:1.6;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:left;
-max-width:700px;
-}
-
-/* video */
-#video{
-width:100vw;
-height:100vh;
-object-fit:cover;
-display:none;
-}
-
-/* final */
-#final{
-font-size:20px;
-background:black;
-text-align:center;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-padding:20px;
-max-width:700px;
-}
-
-/* floating emojis */
-.emoji{
-position:absolute;
-animation:floatUp 6s linear infinite;
-}
-
-@keyframes floatUp{
-from{
-transform:translateY(100vh);
-opacity:1;
-}
-to{
-transform:translateY(-10vh);
-opacity:0;
-}
-}
-</style>
-</head>
-
-<body>
-
-<!-- START -->
-<div id="start" class="section" style="display:flex;">
-<h2>Do you love me? ❤️</h2>
-<button onclick="showLetter()">YES 💖</button>
-<button id="noBtn" onclick="noClick()">NO 🙈</button>
-</div>
-
-<!-- LETTER -->
-<div id="letter" class="section"></div>
-
-<!-- VIDEO -->
-<video id="video">
-<source src="yourvideo.mp4" type="video/mp4">
-</video>
-
-<!-- FINAL -->
-<div id="final" class="section"></div>
-
-<script>
-// playful NO button
-function noClick(){
-let btn=document.getElementById("noBtn");
-btn.innerHTML="YES 💖";
-btn.onclick=showLetter;
-alert("Oops! You have no choice 😏💖");
-}
-
-// emojis generator
-function spawnEmojis(){
-let emojis=["❤️","🎈","🌹","💖","🎂","💘","🌺"];
-let e=document.createElement("div");
-e.className="emoji";
-e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
-e.style.left=Math.random()*100+"vw";
-e.style.fontSize=(25+Math.random()*40)+"px";
-document.body.appendChild(e);
-setTimeout(()=>{ e.remove(); },6000);
-}
-
-// typewriter effect for letter
-function typeLetter(text, container, callback){
-let i=0;
-let interval=setInterval(()=>{
-container.innerHTML+=text[i];
-i++;
-spawnEmojis();
-if(i>=text.length){
-clearInterval(interval);
-if(callback) callback();
-}
-},30); // adjust typing speed
-}
-
-// show letter section
-function showLetter(){
-document.getElementById("start").style.display="none";
-let letter=document.getElementById("letter");
-letter.style.display="flex";
-letter.innerHTML="";
-
-let text=`My Buji, My Pari,
-
-Our story isn’t about grand gestures or loud words. It lives in the quiet moments — the smiles we share, the laughter that sneaks in, the comfort of just being near you. Somehow, without even realizing, my heart found its home in you.
-
-You care so naturally, love so effortlessly, and in that, I see a beauty that words can barely capture. Being with you feels like coming back to a place I didn’t know I was missing — calm, comforting, real. Every little moment with you makes my world brighter, my heart lighter, and my soul fuller.
-
-I want you to know, no matter what life brings, my heart will always choose you. You are my safe place, my joy, my love — and being yours is the easiest, happiest thing I’ve ever known.
-
-Happy Birthday, my love.
-Always yours. Only yours.
-Suyu ❤️💋
-`;
-
-typeLetter(text, letter, ()=>{
-setTimeout(()=>{
-letter.style.display="none";
-let video=document.getElementById("video");
-video.style.display="block";
-video.play();
-video.onended=showFinal;
-},2000); // small pause before video
-});
-}
-
-// show final section with flirty closing
-function showFinal(){
-let final=document.getElementById("final");
-final.style.display="flex";
-
-let closingText=`Happy Birthday, my irresistible troublemaker! 🎂💖
-
-You’re not just my favorite distraction — you’re my obsession, my partner-in-crime, and the reason my heart races for no reason at all. Every time you smile, my brain forgets how to function… and I love it. 😏
-
-I hope your day is as dangerously handsome, fun, and tempting as you are… and yes, that includes a little extra undivided attention from me. I might even steal a kiss or two when you least expect it. 😘
-
-You make every moment feel like mischief wrapped in magic. I can’t promise to behave today — after all, birthdays are for spoiling, teasing… and maybe a little trouble together. 😉
-
-Love you more than cake… and trust me, I really mean that. ❤️
-You’re my favorite distraction, my sweetest addiction, and the reason I can’t stop smiling.
-Here’s to you, to us, and to every cheeky, flirty, unforgettable moment we’re yet to make. 🔥💖`;
-
-final.innerHTML="";
-typeLetter(closingText, final);
-setInterval(spawnEmojis,200); // continuous floating emojis
-}
-</script>
-
-</body>
-</html>
+font-size:18px
