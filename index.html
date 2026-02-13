@@ -205,7 +205,7 @@ function goVideo(){
 function goFinal(){
   document.getElementById("videoSection").classList.add("hidden");
   document.getElementById("final").classList.remove("hidden");
-  startCountdown();
+  startCountdown();   // 🔥 THIS LINE WAS MISSING
 }
 
 /* 🙈 NO button runs away */
@@ -233,7 +233,7 @@ function createHearts(){
 
 /* 🔐 Secret */
 function showSecret(){
-  document.getElementById("secretMessage").style.display="block";
+  document.getElementById("secretMessage").style.display = "block";
 }
 
 /* 🎂 Countdown – 18 March */
