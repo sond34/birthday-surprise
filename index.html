@@ -1,112 +1,299 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Birthday Surprise ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Buji ❤️</title>
 
-  <style>
-    body {
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
-      text-align: center;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-    }
+<style>
 
-    .container {
-      margin-top: 100px;
-    }
+body{
+margin:0;
+padding:0;
+background:black;
+font-family:Arial;
+text-align:center;
+color:white;
+overflow:hidden;
+}
 
-    h1 {
-      font-size: 35px;
-      color: white;
-    }
+/* sections */
+.section{
+display:none;
+height:100vh;
+width:100vw;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
 
-    button {
-      padding: 12px 25px;
-      font-size: 18px;
-      margin: 10px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      background: white;
-    }
+/* start screen */
+#start{
+display:flex;
+background:linear-gradient(135deg,#ff4b6e,#ff758c);
+}
 
-    #letter {
-      display: none;
-      font-size: 20px;
-      width: 80%;
-      margin: auto;
-      margin-top: 40px;
-      color: white;
-      animation: fadeIn 2s;
-    }
+/* buttons */
+button{
+padding:12px 25px;
+font-size:18px;
+margin:10px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff4b6e;
+}
 
-    #video {
-      display: none;
-      margin-top: 40px;
-    }
+/* letter */
+#letter{
+padding:25px;
+font-size:17px;
+background:black;
+overflow-y:auto;
+line-height:1.6;
+}
 
-    #final {
-      display: none;
-      font-size: 30px;
-      color: white;
-      margin-top: 30px;
-      animation: fadeIn 2s;
-    }
+/* full screen video */
+#video{
+width:100vw;
+height:100vh;
+object-fit:cover;
+display:none;
+}
 
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-  </style>
+/* final wish */
+#final{
+font-size:28px;
+background:black;
+}
+
+/* floating emojis */
+.emoji{
+position:absolute;
+animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+from{
+transform:translateY(100vh);
+opacity:1;
+}
+to{
+transform:translateY(-10vh);
+opacity:0;
+}
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<!-- START -->
+<div id="start" class="section" style="display:flex;">
+<h2>Do you love me? ❤️</h2>
 
-    <div id="start">
-      <h1>Do you love me? ❤️</h1>
-      <button onclick="startLove()">Yes 💖</button>
-    </div>
+<button onclick="showLetter()">YES 💖</button>
+<button id="noBtn" onclick="noClick()">NO 🙈</button>
 
-    <div id="letter">
-      <p>
-        Today is not just your birthday… it’s the day my whole world was born. <br><br>
-        I love you more than words can ever explain 💕
-      </p>
-    </div>
+</div>
 
-    <video id="video" width="80%" controls>
-      <source src="yourvideo.mp4" type="video/mp4">
-    </video>
 
-    <div id="final">
-      Happy Birthday My Everything ❤️🎉
-    </div>
+<!-- LETTER -->
+<div id="letter" class="section">
 
-  </div>
+<p>
 
-  <script>
-    function startLove() {
-      document.getElementById("start").style.display = "none";
+My buji (pari),<br><br>
 
-      const letter = document.getElementById("letter");
-      letter.style.display = "block";
+Our story didn’t start with love at first sight—it started with time… and time gently chose you for my heart.<br><br>
 
-      setTimeout(() => {
-        letter.style.display = "none";
+Do you remember 2nd January 2024?<br>
+Tarun bhaiya’s birthday.<br>
+The first time I saw you.<br><br>
 
-        const video = document.getElementById("video");
-        video.style.display = "block";
-        video.play();
+That day, I didn’t fall for you.<br>
+It was just a quiet curiosity—<br>
+“Oh… who is he?”<br><br>
 
-        video.onended = function() {
-          document.getElementById("final").style.display = "block";
-        };
+Time passed slowly, softly.<br>
+Somewhere between teasing, laughing, talking, and just being around you, something inside me started changing. I didn’t understand it at first. I was confused—was it attraction, or was it something more?<br><br>
 
-      }, 5000); // Letter shows for 5 seconds
-    }
-  </script>
+What truly pulled me towards you was your heart.<br>
+The way you loved your brother.<br>
+The care and respect you showed your sister-in-law.<br>
+So attentive. So gentle. So real.<br>
+I remember thinking, “Awww… how can someone be this caring?”<br><br>
+
+Still, I stopped myself.<br>
+I told my heart no.<br>
+You were my best friend’s brother.<br>
+And from the way you spoke, I believed you had no interest in me anyway.<br><br>
+
+So we stayed there—<br>
+teasing each other, pretending nothing was happening—<br>
+while my heart quietly kept choosing you.<br><br>
+
+Then came 13th April 2025.<br>
+Abhishek’s birthday.<br><br>
+
+That night changed everything.<br><br>
+
+We were drunk.<br>
+We were close.<br>
+We ended up on the sofa—<br>
+me resting on your chest,<br>
+You're holding me.<br><br>
+
+And that was the moment I fell for you.<br><br>
+
+You held me so close to your heart.<br>
+You kept kissing my forehead again and again,<br>
+as if you were scared to lose me.<br>
+As if letting go wasn’t even an option.<br><br>
+
+You could have crossed the line.<br>
+You could have blamed the alcohol.<br>
+But you didn’t.<br><br>
+
+You chose control.<br>
+You chose respect.<br>
+You chose to be a gentleman.<br><br>
+
+That choice made me feel safe.<br>
+That purity made me fall deeper.<br><br>
+
+From there, everything grew naturally.<br>
+Talking. Knowing each other.<br>
+Sharing our past, our present, our thoughts, our fears.<br><br>
+
+Friend.<br>
+Best friend.<br>
+Lover.<br>
+And now… everything.<br><br>
+
+I love how real we are.<br>
+No sugar-coating.<br>
+No fake promises.<br>
+Just honesty, purity, and effort.<br><br>
+
+From stealing time for each other<br>
+to openly make time for us—<br>
+Our bond didn’t rush.<br>
+It grew.<br><br>
+
+After you, everything I ever craved—<br>
+love, care, desire, respect, security—<br>
+I found it all in one person.<br>
+And even more than I dreamed of.<br><br>
+
+I want to cherish you.<br>
+Our bond.<br>
+Every moment that made us us.<br><br>
+
+I want to love you like this forever.<br>
+I want this love to grow every single day.<br>
+I want to fall in love with you again and again—<br>
+every day, every moment—<br>
+the same way I fell for you the very first time.<br><br>
+
+I promise you care when you’re tired.<br>
+Security when you overthink.<br>
+Reassurance when your heart needs it.<br>
+Respect for every version of us.<br><br>
+
+What we share is divine—pure and steady like a heartbeat, meant to live as long as my heart does.<br><br>
+
+Always yours.<br>
+Only yours.<br>
+Your Suyu 🤍
+
+</p>
+
+</div>
+
+
+<!-- VIDEO -->
+<video id="video">
+<source src="yourvideo.mp4" type="video/mp4">
+</video>
+
+
+<!-- FINAL -->
+<div id="final" class="section">
+<h2>Happy Birthday My Love ❤️</h2>
+<p>You are my forever, my peace, my heart 🎂🌹</p>
+</div>
+
+
+
+<script>
+
+/* cute NO conversion */
+function noClick(){
+
+let btn=document.getElementById("noBtn");
+btn.innerHTML="YES 💖";
+btn.onclick=showLetter;
+
+}
+
+/* show letter */
+function showLetter(){
+
+document.getElementById("start").style.display="none";
+
+let letter=document.getElementById("letter");
+letter.style.display="flex";
+
+/* show video after 20 seconds */
+setTimeout(()=>{
+
+letter.style.display="none";
+
+let video=document.getElementById("video");
+video.style.display="block";
+
+video.play();
+
+video.onended=function(){
+
+video.style.display="none";
+showFinal();
+
+};
+
+},20000);
+
+}
+
+/* final screen */
+function showFinal(){
+
+let final=document.getElementById("final");
+final.style.display="flex";
+
+/* floating emojis */
+let emojis=["❤️","🎂","🎈","🌹","💖","💐"];
+
+setInterval(()=>{
+
+let e=document.createElement("div");
+e.className="emoji";
+
+e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+e.style.left=Math.random()*100+"vw";
+e.style.fontSize=(20+Math.random()*40)+"px";
+
+document.body.appendChild(e);
+
+setTimeout(()=>{e.remove();},6000);
+
+},300);
+
+}
+
+</script>
 
 </body>
 </html>
