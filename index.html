@@ -1,137 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday My Buji 🤍</title>
+<title>Happy Birthday My Love ❤️</title>
 
 <style>
 body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
   text-align: center;
-  font-family: 'Georgia', serif;
-  background: linear-gradient(to bottom right, #fff0f5, #ffe6f0);
-  margin: 50px;
+  overflow: hidden;
 }
 
-button {
-  padding: 12px 28px;
-  font-size: 18px;
-  margin: 10px;
-  cursor: pointer;
-  border-radius: 25px;
-  border: none;
-  transition: 0.3s;
+.container {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 20px;
 }
 
-#yesBtn {
-  background-color: #ff4d6d;
-  color: white;
+.letter {
+  font-size: 22px;
+  opacity: 0;
+  transition: 2s;
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.6;
 }
 
-#noBtn {
-  background-color: #777;
-  color: white;
-  position: relative;
-}
-
-#letter {
-  display: none;
-  margin: 40px auto;
+video {
   width: 80%;
-  max-width: 700px;
-  background: white;
-  padding: 35px;
+  max-width: 500px;
+  margin-top: 20px;
   border-radius: 15px;
-  box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
-  text-align: left;
-  line-height: 1.8;
-  animation: fadeIn 2s ease-in-out;
+  display: none;
 }
 
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+.final {
+  font-size: 35px;
+  opacity: 0;
+  transition: 2s;
+}
+
+.heart {
+  position: absolute;
+  color: red;
+  font-size: 20px;
+  animation: float 5s linear infinite;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(100vh);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<h1>Hey Birthday Boy 🎂</h1>
-<h2>Do you want to open something special? 💌</h2>
+<div class="container">
 
-<button id="yesBtn" onclick="showLetter()">Yes 🤍</button>
-<button id="noBtn" onmouseover="moveButton()">No 🙈</button>
+<div id="letter" class="letter">
+Happy Birthday My Love ❤️<br><br>
 
-<div id="letter">
+From the moment you came into my life, everything became softer, warmer, and more meaningful.<br><br>
 
-<h2>My Buji (Pari),</h2>
+You are not just someone I love… you are my safe place, my peace, and my happiness.<br><br>
 
-<p>
-Our story didn’t start with love at first sight—it started with time… and time gently chose you for my heart.
-</p>
+Every smile of yours makes my world brighter.<br><br>
 
-<p>
-Do you remember 2nd January 2024? Tarun bhaiya’s birthday. The first time I saw you.
-That day, I didn’t fall for you. It was just a quiet curiosity— “Oh… who is he?”
-</p>
+Today is not just your birthday… it's the day my favorite person was born.<br><br>
 
-<p>
-Time passed slowly, softly. Somewhere between teasing, laughing, talking, and just being around you, something inside me began to change.
-</p>
+I love you more than words can ever explain ❤️
+</div>
 
-<p>
-What truly pulled me towards you was your heart. The way you loved your brother. The care and respect you showed your sister-in-law. So attentive. So gentle. So real.
-</p>
+<video id="video" src="yourvideo.mp4"></video>
 
-<p>
-Then came 13th April 2025. Abhishek’s birthday.
-That night changed everything.
-You held me close. You chose control. You chose respect. You chose to be a gentleman.
-That choice made me feel safe. That purity made me fall deeper.
-</p>
-
-<p>
-From there, everything grew naturally.
-Friend. Best friend. Lover. And now… everything.
-</p>
-
-<p>
-After you, everything I ever craved—love, care, desire, respect, security—I found it all in one person.
-</p>
-
-<p>
-I want to cherish you. Our bond. Every moment that made us us.
-I want to love you like this forever.
-</p>
-
-<p>
-I promise you care when you’re tired. Security when you overthink.
-Reassurance when your heart needs it. Respect for every version of us.
-</p>
-
-<p>
-What we share is divine—pure and steady like a heartbeat, meant to live as long as my heart does.
-</p>
-
-<p>
-Always yours. Only yours. <br>
-<b>Your Suyu 🤍</b>
-</p>
+<div id="final" class="final">
+Happy Birthday My Everything ❤️
+</div>
 
 </div>
 
+<audio id="song" src="yoursong.mp3"></audio>
+
 <script>
-function showLetter() {
-  document.getElementById("letter").style.display = "block";
+
+// Show letter
+setTimeout(() => {
+  document.getElementById("letter").style.opacity = 1;
+}, 1000);
+
+// Play video after letter
+setTimeout(() => {
+  document.getElementById("video").style.display = "block";
+  document.getElementById("video").play();
+  document.getElementById("song").play();
+}, 8000);
+
+// Show final message
+setTimeout(() => {
+  document.getElementById("final").style.opacity = 1;
+  createHearts();
+}, 20000);
+
+
+// Hearts animation
+function createHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+
+  }, 300);
 }
 
-function moveButton() {
-  var button = document.getElementById("noBtn");
-  button.style.left = Math.random() * 300 + "px";
-  button.style.top = Math.random() * 200 + "px";
-}
 </script>
 
 </body>
 </html>
-
