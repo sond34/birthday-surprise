@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday My Love ❤️</title>
+<title>For My Love ❤️</title>
 
 <style>
 body {
@@ -22,27 +22,49 @@ body {
   padding: 20px;
 }
 
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.yes {
+  background: #ff4d6d;
+  color: white;
+}
+
+.no {
+  background: gray;
+  color: white;
+  position: relative;
+}
+
 .letter {
+  display: none;
   font-size: 22px;
-  opacity: 0;
-  transition: 2s;
   max-width: 600px;
   margin: auto;
   line-height: 1.6;
+  opacity: 0;
+  transition: 2s;
 }
 
 video {
+  display: none;
   width: 80%;
   max-width: 500px;
   margin-top: 20px;
   border-radius: 15px;
-  display: none;
 }
 
 .final {
+  display: none;
   font-size: 35px;
-  opacity: 0;
-  transition: 2s;
+  margin-top: 20px;
 }
 
 .heart {
@@ -67,54 +89,78 @@ video {
 
 <body>
 
-<div class="container">
+<div class="container" id="start">
 
-<div id="letter" class="letter">
+<h2>Do you know how much I love you? ❤️</h2>
+
+<button class="yes" onclick="startLove()">Yes 💖</button>
+<button class="no" onmouseover="moveNo()">No 😢</button>
+
+</div>
+
+<div class="container letter" id="letter">
+
+<p>
 Happy Birthday My Love ❤️<br><br>
 
-From the moment you came into my life, everything became softer, warmer, and more meaningful.<br><br>
+From the day you came into my life, everything changed beautifully.<br><br>
 
-You are not just someone I love… you are my safe place, my peace, and my happiness.<br><br>
+You are my peace, my happiness, my favorite person in this world.<br><br>
 
-Every smile of yours makes my world brighter.<br><br>
+Every smile of yours makes my heart melt.<br><br>
 
-Today is not just your birthday… it's the day my favorite person was born.<br><br>
+Today is not just your birthday… it’s the day my whole world was born.<br><br>
 
-I love you more than words can ever explain ❤️
+I love you more than words can ever explain 💕
+</p>
+
 </div>
 
+<div class="container">
 <video id="video" src="yourvideo.mp4"></video>
-
-<div id="final" class="final">
-Happy Birthday My Everything ❤️
+<div id="final" class="final">Happy Birthday My Everything ❤️</div>
 </div>
-
-</div>
-
-<audio id="song" src="yoursong.mp3"></audio>
 
 <script>
 
-// Show letter
-setTimeout(() => {
-  document.getElementById("letter").style.opacity = 1;
-}, 1000);
+function startLove() {
+  document.getElementById("start").style.display = "none";
 
-// Play video after letter
-setTimeout(() => {
-  document.getElementById("video").style.display = "block";
-  document.getElementById("video").play();
-  document.getElementById("song").play();
-}, 8000);
+  const letter = document.getElementById("letter");
+  letter.style.display = "block";
 
-// Show final message
-setTimeout(() => {
-  document.getElementById("final").style.opacity = 1;
+  setTimeout(() => {
+    letter.style.opacity = 1;
+  }, 200);
+
+  setTimeout(() => {
+    playVideo();
+  }, 8000);
+}
+
+function moveNo() {
+  const btn = document.querySelector(".no");
+  btn.style.position = "absolute";
+  btn.style.left = Math.random() * 80 + "vw";
+  btn.style.top = Math.random() * 80 + "vh";
+}
+
+function playVideo() {
+  const video = document.getElementById("video");
+  video.style.display = "block";
+  video.play();
+
+  video.onended = function() {
+    showFinal();
+  };
+}
+
+function showFinal() {
+  const final = document.getElementById("final");
+  final.style.display = "block";
   createHearts();
-}, 20000);
+}
 
-
-// Hearts animation
 function createHearts() {
   setInterval(() => {
     const heart = document.createElement("div");
@@ -127,7 +173,6 @@ function createHearts() {
     setTimeout(() => {
       heart.remove();
     }, 5000);
-
   }, 300);
 }
 
