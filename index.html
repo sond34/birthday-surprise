@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Forever ❤️</title>
+<title>My Special Surprise ❤️</title>
 
 <style>
 *{
@@ -20,11 +20,12 @@ body{
   color:white;
 }
 
-/* Dark romantic overlay */
+/* Dark overlay */
 body::before{
   content:"";
   position:fixed;
-  inset:0;
+  top:0; left:0;
+  width:100%; height:100%;
   background:rgba(0,0,0,0.6);
   z-index:-1;
 }
@@ -32,7 +33,8 @@ body::before{
 /* Sections */
 .section{
   position:absolute;
-  inset:0;
+  width:100%;
+  height:100%;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -41,18 +43,16 @@ body::before{
   padding:20px;
 }
 
-.hidden{
-  display:none;
-}
+.hidden{ display:none; }
 
-/* Glass card */
+/* Glass box */
 .glass{
   background:rgba(255,255,255,0.18);
   backdrop-filter:blur(12px);
-  padding:36px;
-  border-radius:24px;
-  box-shadow:0 0 35px rgba(255,0,150,0.6);
-  max-width:460px;
+  padding:35px;
+  border-radius:22px;
+  box-shadow:0 0 30px rgba(255,0,150,0.6);
+  max-width:450px;
 }
 
 /* Buttons */
@@ -65,7 +65,6 @@ button{
   font-size:16px;
   transition:0.3s;
 }
-
 button:hover{ transform:scale(1.1); }
 
 .yes{ background:#ff4da6; color:white; }
@@ -75,7 +74,7 @@ button:hover{ transform:scale(1.1); }
 video{
   width:90%;
   max-width:400px;
-  border-radius:16px;
+  border-radius:15px;
   margin-top:20px;
 }
 
@@ -83,56 +82,31 @@ video{
 .heart{
   position:absolute;
   animation:float 6s linear infinite;
-  pointer-events:none;
 }
 @keyframes float{
-  0%{transform:translateY(100vh);opacity:0;}
-  100%{transform:translateY(-10vh);opacity:1;}
+  0%{transform:translateY(100vh); opacity:0;}
+  100%{transform:translateY(-10vh); opacity:1;}
 }
 
-/* 🧩 Puzzle */
-.puzzle-board{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:12px;
-  max-width:320px;
-  margin:20px auto;
-}
-
-.puzzle-piece{
-  width:90px;
-  height:55px;
-  background:linear-gradient(135deg,#ff99cc,#ff4d88);
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:14px;
-  font-weight:bold;
-  cursor:pointer;
-  user-select:none;
-  box-shadow:0 0 12px rgba(255,77,136,0.6);
-  transition:0.3s;
-}
-
-.puzzle-piece.fixed{
-  background:linear-gradient(135deg,#ff4d88,#ff0066);
-  cursor:default;
-  box-shadow:0 0 20px rgba(255,0,102,0.8);
-}
-
-.puzzle-final{
+/* 🎂 PUZZLE */
+#puzzle{
   display:none;
   margin-top:25px;
-  font-size:20px;
-  color:#ff0066;
-  animation:glow 2s infinite alternate;
 }
-
-@keyframes glow{
-  from{text-shadow:0 0 6px #ff99cc;}
-  to{text-shadow:0 0 22px #ff0066;}
+.piece{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(40px) scale(0.8);
+  animation:assemble 0.6s ease forwards;
+  font-size:22px;
+  font-weight:bold;
+  color:#ffddf0;
+}
+@keyframes assemble{
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
 }
 </style>
 </head>
@@ -161,10 +135,10 @@ video{
   <div class="glass">
     <h2>For You ❤️</h2>
     <p style="margin-top:15px;">
-      Somewhere between all the ordinary days,<br>
-      you became my favorite part of life.<br><br>
-      Your smile feels like home.<br>
-      Loving you feels natural.
+      You are the most beautiful part of my life.<br><br>
+      Your smile heals me.<br>
+      Your presence feels like home.<br><br>
+      Happy Birthday, my love 💖
     </p>
     <br>
     <button class="yes" onclick="goVideo()">Next 🎥</button>
@@ -174,8 +148,8 @@ video{
 <!-- 3️⃣ VIDEO -->
 <div id="videoSection" class="section hidden">
   <div class="glass">
-    <h2>Our Little World 💞</h2>
-    <video muted playsinline controls>
+    <h2>Our Moment 💞</h2>
+    <video controls muted>
       <source src="yourvideo.mp4" type="video/mp4">
     </video>
     <br>
@@ -190,39 +164,32 @@ video{
 
     <p style="margin-top:15px;">
       I choose you — today, tomorrow, always.<br>
-      You are my peace, my happiness, my forever.
+      You are my peace, my happiness, my forever. 💖
     </p>
 
     <br>
 
-    <h3>🎂 Countdown to 18 March 🎂</h3>
-    <p id="countdown" style="margin-top:10px;"></p>
+    <h3>🎂 Countdown to Your Birthday 🎂</h3>
+    <p id="countdown" style="margin-top:10px; font-size:18px;"></p>
 
     <br>
 
-    <button class="yes" onclick="showSecret()">Unlock Secret Message 🔐</button>
+    <button class="yes" onclick="unlockSecret()">Unlock Final Surprise 🔐</button>
 
     <div id="secretMessage" style="display:none; margin-top:20px;">
       <p>
-        If love had a shape,<br>
-        it would look like you.<br><br>
-        You are deeply, endlessly loved ❤️
+        If love had a face, it would look like you.<br>
+        If happiness had a name, it would be yours. ❤️
       </p>
     </div>
 
     <!-- 🧩 PUZZLE -->
-    <div style="margin-top:35px;">
-      <h3 style="color:#ff66aa;">🧩 Tap to Assemble Your Birthday Wish</h3>
-      <div id="puzzleBoard" class="puzzle-board"></div>
-
-      <div id="puzzleFinal" class="puzzle-final">
-        🎉 HAPPY BIRTHDAY MY LOVE 🎉<br><br>
-        On this 18th March,<br>
-        may your smile never fade,<br>
-        your heart stay light,<br>
-        and your life overflow with love ❤️<br><br>
-        You are my always 💖
-      </div>
+    <div id="puzzle">
+      <div class="piece">HAPPY</div>
+      <div class="piece">BIRTHDAY</div>
+      <div class="piece">MY</div>
+      <div class="piece">LOVE</div>
+      <div class="piece">❤️</div>
     </div>
 
   </div>
@@ -232,26 +199,22 @@ video{
 
 /* Navigation */
 function goLetter(){
-  hideShow("start","letter");
-  document.getElementById("music").volume=0.5;
+  document.getElementById("start").classList.add("hidden");
+  document.getElementById("letter").classList.remove("hidden");
   document.getElementById("music").play();
   createHearts();
 }
-
-function goVideo(){ hideShow("letter","videoSection"); }
-
+function goVideo(){
+  document.getElementById("letter").classList.add("hidden");
+  document.getElementById("videoSection").classList.remove("hidden");
+}
 function goFinal(){
-  hideShow("videoSection","final");
+  document.getElementById("videoSection").classList.add("hidden");
+  document.getElementById("final").classList.remove("hidden");
   startCountdown();
-  createPuzzle();
 }
 
-function hideShow(a,b){
-  document.getElementById(a).classList.add("hidden");
-  document.getElementById(b).classList.remove("hidden");
-}
-
-/* NO button runs */
+/* NO button */
 function moveNo(btn){
   btn.style.position="absolute";
   btn.style.top=Math.random()*80+"%";
@@ -260,8 +223,8 @@ function moveNo(btn){
 
 /* Hearts */
 function createHearts(){
-  let i=0;
-  let inter=setInterval(()=>{
+  let count=0;
+  let interval=setInterval(()=>{
     let h=document.createElement("div");
     h.className="heart";
     h.innerHTML="💖";
@@ -269,72 +232,40 @@ function createHearts(){
     h.style.fontSize=(Math.random()*20+15)+"px";
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),6000);
-    if(++i>30) clearInterval(inter);
+    count++;
+    if(count>30) clearInterval(interval);
   },200);
 }
 
-/* Secret */
-function showSecret(){
-  document.getElementById("secretMessage").style.display="block";
-}
-
-/* 🎂 Countdown */
+/* Countdown */
 function startCountdown(){
-  let birthday=new Date(2026,2,18);
+  let birthday = new Date(2026, 2, 18);
   setInterval(()=>{
-    let d=birthday-new Date();
-    if(d<0){
-      document.getElementById("countdown").innerHTML="🎉 Happy Birthday My Love 🎉";
+    let now = new Date().getTime();
+    let diff = birthday - now;
+    if(diff < 0){
+      document.getElementById("countdown").innerHTML =
+        "🎉 Happy Birthday My Love! 🎉";
       return;
     }
-    let days=Math.floor(d/86400000);
-    let hrs=Math.floor(d%86400000/3600000);
-    let min=Math.floor(d%3600000/60000);
-    let sec=Math.floor(d%60000/1000);
-    document.getElementById("countdown").innerHTML=
-      `${days} Days ${hrs} Hours ${min} Minutes ${sec} Seconds`;
+    let d=Math.floor(diff/(1000*60*60*24));
+    let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    let m=Math.floor((diff%(1000*60*60))/(1000*60));
+    let s=Math.floor((diff%(1000*60))/1000);
+    document.getElementById("countdown").innerHTML =
+      d+" Days "+h+" Hours "+m+" Minutes "+s+" Seconds";
   },1000);
 }
 
-/* 🧩 Puzzle */
-const puzzleWords=["Happy","Birthday","My","Beautiful","Love","18th","March","Forever ❤️"];
-let solved=0;
-
-function createPuzzle(){
-  solved=0;
-  let board=document.getElementById("puzzleBoard");
-  board.innerHTML="";
-  [...puzzleWords].sort(()=>Math.random()-0.5).forEach(w=>{
-    let p=document.createElement("div");
-    p.className="puzzle-piece";
-    p.innerText=w;
-    p.onclick=function(){
-      if(p.classList.contains("fixed"))return;
-      p.classList.add("fixed");
-      solved++;
-      if(solved===puzzleWords.length){
-        document.getElementById("puzzleFinal").style.display="block";
-        confetti();
-      }
-    };
-    board.appendChild(p);
+/* 🔐 Unlock + Puzzle */
+function unlockSecret(){
+  document.getElementById("secretMessage").style.display="block";
+  let pieces=document.querySelectorAll(".piece");
+  document.getElementById("puzzle").style.display="block";
+  pieces.forEach((p,i)=>{
+    p.style.animationDelay=(i*0.4)+"s";
   });
 }
-
-function confetti(){
-  for(let i=0;i<25;i++){
-    let c=document.createElement("div");
-    c.innerHTML="🎉";
-    c.style.position="fixed";
-    c.style.left=Math.random()*100+"%";
-    c.style.top="-20px";
-    c.style.fontSize="22px";
-    c.style.animation="float 3s linear forwards";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),3000);
-  }
-}
-
 </script>
 
 </body>
