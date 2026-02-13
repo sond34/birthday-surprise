@@ -1,201 +1,112 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>For My Love ❤️</title>
+  <title>Birthday Surprise ❤️</title>
 
-<style>
-body {
-  margin: 0;
-  background: black;
-  color: white;
-  font-family: 'Segoe UI', sans-serif;
-  text-align: center;
-  overflow: hidden;
-}
+  <style>
+    body {
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      text-align: center;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
 
-.container {
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 20px;
-}
+    .container {
+      margin-top: 100px;
+    }
 
-button {
-  padding: 12px 25px;
-  font-size: 18px;
-  border-radius: 30px;
-  border: none;
-  margin: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+    h1 {
+      font-size: 35px;
+      color: white;
+    }
 
-.yes {
-  background: #ff4d6d;
-  color: white;
-}
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      margin: 10px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      background: white;
+    }
 
-.no {
-  background: gray;
-  color: white;
-  position: relative;
-}
+    #letter {
+      display: none;
+      font-size: 20px;
+      width: 80%;
+      margin: auto;
+      margin-top: 40px;
+      color: white;
+      animation: fadeIn 2s;
+    }
 
-.letter {
-  display: none;
-  font-size: 22px;
-  max-width: 600px;
-  margin: auto;
-  line-height: 1.6;
-  opacity: 0;
-  transition: 2s;
-}
+    #video {
+      display: none;
+      margin-top: 40px;
+    }
 
-video {
-  display: none;
-  width: 80%;
-  max-width: 500px;
-  margin-top: 20px;
-  border-radius: 15px;
-}
+    #final {
+      display: none;
+      font-size: 30px;
+      color: white;
+      margin-top: 30px;
+      animation: fadeIn 2s;
+    }
 
-.final {
-  display: none;
-  font-size: 35px;
-  margin-top: 20px;
-}
-
-.heart {
-  position: absolute;
-  color: red;
-  font-size: 20px;
-  animation: float 5s linear infinite;
-}
-
-@keyframes float {
-  from {
-    transform: translateY(100vh);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-10vh);
-    opacity: 0;
-  }
-}
-</style>
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container" id="start">
+  <div class="container">
 
-<h2>Do you know how much I love you? ❤️</h2>
+    <div id="start">
+      <h1>Do you love me? ❤️</h1>
+      <button onclick="startLove()">Yes 💖</button>
+    </div>
 
-<button class="yes" onclick="startLove()">Yes 💖</button>
-<button class="no" onmouseover="moveNo()">No 😢</button>
+    <div id="letter">
+      <p>
+        Today is not just your birthday… it’s the day my whole world was born. <br><br>
+        I love you more than words can ever explain 💕
+      </p>
+    </div>
 
-</div>
+    <video id="video" width="80%" controls>
+      <source src="yourvideo.mp4" type="video/mp4">
+    </video>
 
-<div class="container letter" id="letter">
+    <div id="final">
+      Happy Birthday My Everything ❤️🎉
+    </div>
 
-<p>
-Happy Birthday My Love ❤️<br><br>
+  </div>
 
-From the day you came into my life, everything changed beautifully.<br><br>
+  <script>
+    function startLove() {
+      document.getElementById("start").style.display = "none";
 
-You are my peace, my happiness, my favorite person in this world.<br><br>
+      const letter = document.getElementById("letter");
+      letter.style.display = "block";
 
-Every smile of yours makes my heart melt.<br><br>
+      setTimeout(() => {
+        letter.style.display = "none";
 
-Today is not just your birthday… it’s the day my whole world was born.<br><br>
+        const video = document.getElementById("video");
+        video.style.display = "block";
+        video.play();
 
-I love you more than words can ever explain 💕
-</p>
+        video.onended = function() {
+          document.getElementById("final").style.display = "block";
+        };
 
-</div>
-
-<div class="container">
-
-  <video id="video" width="80%" controls style="display:none; margin:auto;">
-    <source src="yourvideo.mp4" type="video/mp4">
-  </video>
-
-  <div id="final" class="final">Happy Birthday My Everything 🧡</div>
-
-</div>
-
-<div id="final" class="final">Happy Birthday My Everything ❤️</div>
-</div>
-
-<script>
-
-function startLove() {
-  document.getElementById("start").style.display = "none";
-
-  const letter = document.getElementById("letter");
-  letter.style.display = "block";
-  setTimeout(() => {
-  letter.style.display = "none";
-  const video = document.getElementById("video");
-  video.style.display = "block";
-  video.play();
-
-  video.onended = function() {
-    document.getElementById("final").style.display = "block";
-  };
-}, 5000);
-
-
-  setTimeout(() => {
-    letter.style.opacity = 1;
-  }, 200);
-
-  setTimeout(() => {
-    playVideo();
-  }, 8000);
-}
-
-function moveNo() {
-  const btn = document.querySelector(".no");
-  btn.style.position = "absolute";
-  btn.style.left = Math.random() * 80 + "vw";
-  btn.style.top = Math.random() * 80 + "vh";
-}
-
-function playVideo() {
-  const video = document.getElementById("video");
-  video.style.display = "block";
-  video.play();
-
-  video.onended = function() {
-    showFinal();
-  };
-}
-
-function showFinal() {
-  const final = document.getElementById("final");
-  final.style.display = "block";
-  createHearts();
-}
-
-function createHearts() {
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 20 + "px";
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-      heart.remove();
-    }, 5000);
-  }, 300);
-}
-
-</script>
+      }, 5000); // Letter shows for 5 seconds
+    }
+  </script>
 
 </body>
 </html>
