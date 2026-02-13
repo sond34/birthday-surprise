@@ -11,9 +11,36 @@
 body{
     margin:0;
     padding:0;
+    overflow:hidden;
     font-family:Arial, sans-serif;
-    overflow-x:hidden;
-    background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+    background:black;
+}
+
+/* Animated romantic gradient */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fad0c4);
+    background-size:400% 400%;
+    animation:gradientMove 15s ease infinite;
+    z-index:-3;
+}
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* Background image */
+#bgImage{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url("couple-bg.png") center/cover no-repeat;
+    opacity:0.85;
+    z-index:-2;
 }
 
 /* Sections */
@@ -24,17 +51,243 @@ body{
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    padding:20px;
-    box-sizing:border-box;
+    text-align:center;
     position:relative;
 }
 
-/* START */
+/* Opening */
 #start{
     display:flex;
-    background:linear-gradient(135deg,#ff758c,#ff7eb3);
     color:white;
-    text-align:center;
+    font-family:'Dancing Script', cursive;
+}
+
+#start h1{
+    font-size:42px;
+    animation:floatText 3s ease-in-out infinite;
+}
+@keyframes floatText{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+/* Buttons */
+button{
+    padding:15px 35px;
+    font-size:20px;
+    margin:15px;
+    border:none;
+    border-radius:50px;
+    background:white;
+    color:#ff4b6e;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+button:hover{
+    transform:scale(1.15);
+}
+
+/* Glass letter box */
+#letter, #final{
+    display:none;
+    font-family:'Dancing Script', cursive;
+    font-size:22px;
+    line-height:1.8;
+    padding:50px;
+    border-radius:25px;
+    width:80%;
+    max-width:900px;
+    max-height:85vh;
+    overflow-y:auto;
+    backdrop-filter:blur(14px);
+    background:rgba(255,255,255,0.25);
+    color:#800000;
+    box-shadow:0 0 40px rgba(255,75,110,0.5);
+    z-index:10;
+}
+
+/* Video */
+#video{
+    width:100vw;
+    height:100vh;
+    object-fit:cover;
+    display:none;
+}
+
+/* Floating hearts & balloons */
+.spark{
+    position:absolute;
+    animation:floatUp 6s linear forwards;
+    pointer-events:none;
+    z-index:1;
+}
+@keyframes floatUp{
+    from{transform:translateY(100vh) scale(0.8); opacity:1;}
+    to{transform:translateY(-10vh) scale(1.5); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="bgImage"></div>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop>
+    <source src="soft-music.mp3" type="audio/mp3">
+</audio>
+
+<!-- OPENING -->
+<div id="start" class="section">
+    <h1>Wait… before we continue 💕</h1>
+    <p>Answer carefully 😌</p>
+    <p>Do you love me more than sleep, chocolate & your phone? 😏</p>
+    <div>
+        <button onclick="startMagic()">YES 💖</button>
+        <button id="noBtn" onclick="noEscape()">NO 🙈</button>
+    </div>
+</div>
+
+<!-- LETTER -->
+<div id="letter" class="section">
+    <div id="letterText"></div>
+</div>
+
+<!-- VIDEO -->
+<video id="video" muted playsinline>
+    <source src="yourvideo.mp4" type="video/mp4">
+</video>
+
+<!-- FINAL -->
+<div id="final" class="section">
+    <div id="finalText"></div>
+</div>
+
+<script>
+
+/* Play music smoothly */
+function playMusic(){
+    let music=document.getElementById("bgMusic");
+    music.volume=0;
+    music.play();
+
+    let vol=0;
+    let fade=setInterval(()=>{
+        if(vol<0.5){
+            vol+=0.02;
+            music.volume=vol;
+        } else{
+            clearInterval(fade);
+        }
+    },200);
+}
+
+/* NO button tease */
+function noEscape(){
+    let btn=document.getElementById("noBtn");
+    btn.innerHTML="Nice try 😏 Click YES 💖";
+    btn.style.transform="translateX("+(Math.random()*200-100)+"px)";
+}
+
+/* Text content */
+const letterContent = `
+My Buji, My Pari 💋
+
+Somehow, without asking for permission,
+my heart quietly chose you.
+
+Not because of grand moments,
+but because of the small ones —
+your smile,
+your laugh,
+your presence.
+
+You feel like peace.
+You feel like home.
+
+Happy Birthday, my love.
+Always yours.
+Suyu ❤️
+`;
+
+const finalContent = `
+Happy Birthday, my irresistible troublemaker 🎂💖
+
+You are my favorite distraction,
+my sweetest addiction,
+and the reason my heart races for no reason at all.
+
+Here’s to us.
+To love.
+To mischief.
+To stolen kisses 😘
+To forever.
+
+I love you ❤️
+`;
+
+/* Typewriter */
+function typeWriter(text, element, speed=25, callback=null){
+    let i=0;
+    element.innerHTML="";
+    let interval=setInterval(()=>{
+        if(i<text.length){
+            element.innerHTML+=text[i];
+            i++;
+        } else{
+            clearInterval(interval);
+            if(callback) callback();
+        }
+    },speed);
+}
+
+/* Start magic */
+function startMagic(){
+    playMusic();
+
+    document.getElementById("start").style.display="none";
+    let letter=document.getElementById("letter");
+    letter.style.display="flex";
+
+    typeWriter(letterContent, document.getElementById("letterText"), 25, ()=>{
+        setTimeout(()=>{
+            letter.style.display="none";
+            let video=document.getElementById("video");
+            video.style.display="block";
+            video.play();
+
+            video.onended=function(){
+                video.style.display="none";
+                showFinal();
+            };
+        },1500);
+    });
+}
+
+/* Final hearts & balloons */
+function showFinal(){
+    let final=document.getElementById("final");
+    final.style.display="flex";
+
+    typeWriter(finalContent, document.getElementById("finalText"), 25);
+
+    let items=["❤️","💖","💘","💝","🎈","✨","💋"];
+    setInterval(()=>{
+        let s=document.createElement("div");
+        s.className="spark";
+        s.innerHTML=items[Math.floor(Math.random()*items.length)];
+        s.style.left=Math.random()*100+"vw";
+        s.style.fontSize=(30+Math.random()*40)+"px";
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(),6000);
+    },200);
+}
+
+</script>
+
+</body>
+        </html>    text-align:center;
 }
 
 /* Buttons */
