@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday ❤️</title>
+
+<style>
+
+body {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin-top: 80px;
+  background: linear-gradient(to bottom right, #fff0f5, #ffe4ec);
+}
+
+/* Buttons */
+button {
+  padding: 12px 28px;
+  font-size: 18px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 25px;
+  border: none;
+  transition: 0.3s;
+}
+
+#yesBtn {
+  background-color: #ff4d6d;
+  color: white;
+}
+
+#yesBtn:hover {
+  background-color: #e63956;
+}
+
+#noBtn {
+  background-color: #6c757d;
+  color: white;
+  position: relative;
+}
+
+/* Hidden letter box */
+#letter {
+  display: none;
+  margin: 40px auto;
+  width: 70%;
+  max-width: 500px;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0px 5px 20px rgba(0,0,0,0.15);
+  animation: fadeIn 1.5s;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Heart animation */
+.heart {
+  font-size: 24px;
+  animation: float 2s infinite;
+}
+
+@keyframes float {
+  0% {transform: translateY(0px);}
+  50% {transform: translateY(-10px);}
+  100% {transform: translateY(0px);}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Hey Birthday Boy 🎂</h1>
+
+<h2>I have something for you...</h2>
+
+<p>Do you want to open your birthday letter? 💌</p>
+
+<button id="yesBtn" onclick="showLetter()">Yes ❤️</button>
+
+<button id="noBtn" onmouseover="moveButton()">No 🙈</button>
+
+
+<div id="letter">
+
+<h2 class="heart">❤️ Happy Birthday ❤️</h2>
+
+<p>
+From strangers to something so special,
+I never knew you would become this important to me.
+</p>
+
+<p>
+From random talks to caring moments,
+you slowly became my comfort and my happiness.
+</p>
+
+<p>
+You are not just someone in my life,
+you are someone who makes my life feel complete.
+</p>
+
+<p>
+On your birthday, I just want you to know
+how grateful I am that you exist.
+</p>
+
+<p>
+I hope this year brings you success, peace, and everything you dream of.
+And I hope I get to be beside you in every chapter ahead.
+</p>
+
+<p>
+Happy Birthday ❤️<br>
+Forever yours.
+</p>
+
+</div>
+
+
+<script>
+
+function showLetter() {
+  document.getElementById("letter").style.display = "block";
+}
+
+function moveButton() {
+  var button = document.getElementById("noBtn");
+
+  var x = Math.random() * 300;
+  var y = Math.random() * 200;
+
+  button.style.position = "relative";
+  button.style.left = x + "px";
+  button.style.top = y + "px";
+}
+
+</script>
+
+</body>
+</html>
