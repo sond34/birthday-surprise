@@ -28,11 +28,11 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.5);
+background:rgba(0,0,0,0.6);
 z-index:-1;
 }
 
-/* Sections */
+/* Section layout */
 .section{
 position:absolute;
 width:100%;
@@ -45,7 +45,6 @@ text-align:center;
 padding:20px;
 }
 
-/* Hidden by default */
 .hidden{
 display:none;
 }
@@ -53,11 +52,11 @@ display:none;
 /* Glass box */
 .glass{
 background:rgba(255,255,255,0.15);
-backdrop-filter:blur(12px);
-padding:40px;
+backdrop-filter:blur(10px);
+padding:30px;
 border-radius:20px;
-box-shadow:0 0 30px rgba(255,0,150,0.6);
-max-width:450px;
+box-shadow:0 0 25px rgba(255,0,150,0.6);
+max-width:420px;
 }
 
 /* Buttons */
@@ -68,7 +67,6 @@ border:none;
 border-radius:25px;
 cursor:pointer;
 font-size:16px;
-transition:0.3s;
 }
 
 .yes{
@@ -81,8 +79,12 @@ background:white;
 color:#ff4da6;
 }
 
-button:hover{
-transform:scale(1.1);
+/* Video */
+video{
+width:90%;
+max-width:400px;
+border-radius:15px;
+margin-top:20px;
 }
 
 /* Floating hearts */
@@ -91,125 +93,82 @@ position:absolute;
 animation:float 6s linear infinite;
 }
 
-.balloon{
-position:absolute;
-font-size:30px;
-animation:balloonFloat 10s linear infinite;
-}
-
 @keyframes float{
 0%{transform:translateY(100vh);opacity:0;}
 100%{transform:translateY(-10vh);opacity:1;}
-}
-
-@keyframes balloonFloat{
-0%{transform:translateY(100vh);}
-100%{transform:translateY(-10vh);}
-}
-
-/* Typewriter */
-#letterText{
-white-space:pre-line;
-font-size:18px;
-min-height:120px;
-}
-video{
-width:90%;
-max-width:400px;
-border-radius:20px;
-margin-top:20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Soft Music -->
-<audio id="bgMusic" loop>
+<audio id="music" loop>
 <source src="yourvideo.mp4" type="audio/mp4">
 </audio>
 
-<!-- 1️⃣ Opening -->
-<div class="section" id="start">
+<!-- START -->
+<div id="start" class="section">
 <div class="glass">
 <h2>Will you open your surprise? 💌</h2>
 <br>
-<button class="yes" onclick="startStory()">Yes 💖</button>
+<button class="yes" onclick="goLetter()">Yes 💖</button>
 <button class="no" onclick="moveNo(this)">No 🙈</button>
 </div>
 </div>
 
-<!-- 2️⃣ Letter -->
-<div class="section hidden" id="letter">
+<!-- LETTER -->
+<div id="letter" class="section hidden">
 <div class="glass">
 <h2>For You ❤️</h2>
+<p style="margin-top:15px;">
+You are the most beautiful part of my life.<br><br>
+Every moment with you feels magical.<br><br>
+Your smile lights up my world.<br><br>
+Happy Birthday My Love 💖
+</p>
 <br>
-<div id="letterText"></div>
-<br>
-<button class="yes" onclick="showVideo()">Next 🎥</button>
+<button class="yes" onclick="goVideo()">Next 🎥</button>
 </div>
 </div>
 
-<!-- 3️⃣ Video -->
-<div class="section hidden" id="videoSection">
+<!-- VIDEO -->
+<div id="videoSection" class="section hidden">
 <div class="glass">
 <h2>Our Beautiful Moment 💞</h2>
 <video controls>
 <source src="yourvideo.mp4" type="video/mp4">
 </video>
 <br>
-<button class="yes" onclick="showFinal()">Final Surprise ✨</button>
+<button class="yes" onclick="goFinal()">Final Surprise ✨</button>
 </div>
 </div>
 
-<!-- 4️⃣ Final Wish -->
-<div class="section hidden" id="final">
+<!-- FINAL -->
+<div id="final" class="section hidden">
 <div class="glass">
 <h2>Forever & Always ❤️</h2>
-<br>
-<p>You are my greatest blessing.  
-Every heartbeat of mine whispers your name.  
-I love you endlessly 💖✨</p>
+<p style="margin-top:15px;">
+You are my greatest blessing.<br><br>
+I love you endlessly 💖✨
+</p>
 </div>
 </div>
 
 <script>
 
-let text = `You are the most beautiful part of my life.
-
-Every moment with you feels magical.
-Your smile lights up my darkest days.
-
-Today is special,
-because YOU are special.
-
-Happy Birthday My Love ❤️`;
-
-let i=0;
-
-function startStory(){
+function goLetter(){
 document.getElementById("start").classList.add("hidden");
 document.getElementById("letter").classList.remove("hidden");
-document.getElementById("bgMusic").play();
-typeWriter();
+document.getElementById("music").play();
 createHearts();
-createBalloons();
 }
 
-function typeWriter(){
-if(i<text.length){
-document.getElementById("letterText").innerHTML += text.charAt(i);
-i++;
-setTimeout(typeWriter,40);
-}
-}
-
-function showVideo(){
+function goVideo(){
 document.getElementById("letter").classList.add("hidden");
 document.getElementById("videoSection").classList.remove("hidden");
 }
 
-function showFinal(){
+function goFinal(){
 document.getElementById("videoSection").classList.add("hidden");
 document.getElementById("final").classList.remove("hidden");
 }
@@ -221,7 +180,7 @@ btn.style.left=Math.random()*80+"%";
 }
 
 function createHearts(){
-for(let i=0;i<30;i++){
+for(let i=0;i<25;i++){
 let heart=document.createElement("div");
 heart.className="heart";
 heart.innerHTML="💖";
@@ -229,17 +188,6 @@ heart.style.left=Math.random()*100+"vw";
 heart.style.fontSize=Math.random()*20+15+"px";
 heart.style.animationDuration=(Math.random()*3+3)+"s";
 document.body.appendChild(heart);
-}
-}
-
-function createBalloons(){
-for(let i=0;i<10;i++){
-let balloon=document.createElement("div");
-balloon.className="balloon";
-balloon.innerHTML="🎈";
-balloon.style.left=Math.random()*100+"vw";
-balloon.style.animationDuration=(Math.random()*5+5)+"s";
-document.body.appendChild(balloon);
 }
 }
 
