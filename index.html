@@ -4,19 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For My Buji ❤️</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+
 <style>
-body {
+body{
     margin:0;
     padding:0;
-    font-family: Arial, sans-serif;
-    overflow:hidden;
-    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-    color:#800000;
+    font-family:Arial, sans-serif;
+    overflow-x:hidden;
+    background:linear-gradient(135deg,#ffdde1,#ee9ca7);
 }
 
 /* Sections */
-.section {
+.section{
     display:none;
     height:100vh;
     width:100vw;
@@ -28,17 +29,16 @@ body {
     position:relative;
 }
 
-/* START screen */
-#start {
+/* START */
+#start{
     display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    color:white;
+    text-align:center;
 }
 
-/* Playful button */
-button {
+/* Buttons */
+button{
     padding:16px 32px;
     font-size:20px;
     margin:12px;
@@ -48,173 +48,201 @@ button {
     color:#ff4b6e;
     font-weight:bold;
     cursor:pointer;
-    position:relative;
-    transition: all 0.3s ease;
-    box-shadow:0 0 10px rgba(255,75,110,0.5);
+    transition:all 0.3s ease;
+    box-shadow:0 0 15px rgba(255,75,110,0.6);
 }
-button:hover {
-    transform: scale(1.1) rotate(-3deg);
-    box-shadow: 0 0 20px rgba(255,75,110,0.8);
-}
-
-/* Hearts for button */
-.button-heart {
-    position:absolute;
-    animation:buttonHeart 1s ease forwards;
-    font-size:24px;
-    pointer-events:none;
-}
-@keyframes buttonHeart{
-    0%{transform:translateY(0) scale(1); opacity:1;}
-    50%{transform:translateY(-40px) scale(1.4); opacity:0.8;}
-    100%{transform:translateY(-80px) scale(0.8); opacity:0;}
+button:hover{
+    transform:scale(1.1) rotate(-3deg);
+    box-shadow:0 0 25px rgba(255,75,110,1);
 }
 
-/* Letter & Final Sections */
-#letter, #final {
+/* Letter & Final */
+#letter, #final{
     font-family:'Dancing Script', cursive;
-    max-width:800px;
+    max-width:900px;
     max-height:90vh;
     overflow-y:auto;
-    padding:40px;
-    border-radius:20px;
-    background: linear-gradient(135deg,#fff0f5,#ffe6e6);
-    box-shadow:0 0 30px rgba(255,75,110,0.5);
+    padding:50px;
+    border-radius:25px;
     line-height:1.8;
-    font-size:20px;
+    font-size:21px;
     text-align:left;
     display:flex;
     flex-direction:column;
     justify-content:flex-start;
     align-items:flex-start;
     position:relative;
-    z-index:10;
     white-space:pre-wrap;
     margin:auto;
+
+    background:
+      linear-gradient(rgba(255,240,245,0.85), rgba(255,240,245,0.85)),
+      url("couple-bg.png");
+    background-size:cover;
+    background-position:center;
+
+    box-shadow:0 0 40px rgba(255,75,110,0.6);
+    animation:fadeIn 0.8s ease;
+}
+
+/* Fade */
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.95);}
+    to{opacity:1; transform:scale(1);}
 }
 
 /* Video */
-#video {
+#video{
     width:100vw;
     height:100vh;
     object-fit:cover;
     display:none;
-    z-index:1;
 }
 
-/* Floating emojis */
-.emoji {
+/* Floating hearts */
+.emoji{
     position:absolute;
-    animation:floatUp 6s linear infinite;
+    animation:floatUp 6s linear forwards;
+    pointer-events:none;
 }
 @keyframes floatUp{
     from{transform:translateY(100vh) rotate(0deg); opacity:1;}
     to{transform:translateY(-10vh) rotate(360deg); opacity:0;}
 }
+
+/* Spark balloons & hearts */
+.spark{
+    position:absolute;
+    animation:sparkFloat 5s linear forwards;
+    pointer-events:none;
+}
+@keyframes sparkFloat{
+    0%{transform:translateY(0) scale(0.8); opacity:1;}
+    100%{transform:translateY(-120vh) scale(1.4); opacity:0;}
+}
 </style>
 </head>
+
 <body>
 
 <!-- START -->
-<div id="start" class="section" style="display:flex;">
-    <h2 style="font-size:28px; text-align:center;">Do you love me? ❤️</h2>
-    <button onclick="showLetter(); animateButtonHearts(this)">YES 💖</button>
+<div id="start" class="section">
+    <h2 style="font-size:32px; font-family:'Dancing Script', cursive;">
+        Before we begin… 💕
+    </h2>
+    <p style="font-size:20px;">
+        Do you love me more than chocolate, sleep & your phone? 😏
+    </p>
+    <button onclick="showLetter(); animateButtonHearts(this); heartsShower()">YES 💖</button>
     <button id="noBtn" onclick="noClick()">NO 🙈</button>
 </div>
 
 <!-- LETTER -->
 <div id="letter" class="section">
-<p id="letterText"></p>
+    <p id="letterText"></p>
 </div>
 
 <!-- VIDEO -->
-<video id="video">
-<source src="yourvideo.mp4" type="video/mp4">
+<video id="video" muted playsinline>
+    <source src="yourvideo.mp4" type="video/mp4">
 </video>
 
 <!-- FINAL -->
 <div id="final" class="section">
-<p id="finalText"></p>
+    <p id="finalText"></p>
 </div>
 
 <script>
-// NO becomes YES cutely
+/* Playful NO */
 function noClick(){
     let btn=document.getElementById("noBtn");
-    btn.innerHTML="YES 💖";
+    btn.innerHTML="YES 💖 (No escape 😘)";
     btn.onclick=showLetter;
+    heartsShower();
 }
 
-// Animate hearts on YES button
+/* Button hearts */
 function animateButtonHearts(button){
     for(let i=0;i<12;i++){
         let h=document.createElement("div");
-        h.className="button-heart";
-        h.style.left=(Math.random()*button.offsetWidth-10)+"px";
-        h.style.top=(Math.random()*button.offsetHeight-10)+"px";
+        h.className="emoji";
         h.innerHTML="❤️";
-        button.appendChild(h);
-        setTimeout(()=>{h.remove();},1000);
+        h.style.left=Math.random()*100+"vw";
+        h.style.fontSize=(20+Math.random()*30)+"px";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),6000);
     }
 }
 
-// Letter text
+/* Hearts Shower */
+function heartsShower(){
+    for(let i=0;i<40;i++){
+        let h=document.createElement("div");
+        h.className="emoji";
+        h.innerHTML="💖";
+        h.style.left=Math.random()*100+"vw";
+        h.style.fontSize=(20+Math.random()*30)+"px";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),6000);
+    }
+}
+
+/* Letter Content */
 const letterContent = `
 My Buji, My Pari, 💋
 
-Our story isn’t about grand gestures or loud words. It lives in the quiet moments — the smiles we share, the laughter that sneaks in, the comfort of just being near you. Somehow, without even realizing, my heart found its home in you. 💋
+Our story lives in the quiet moments — the smiles we share, the laughter that sneaks in, and the comfort of simply being close. Without even realizing it, my heart chose you… and it has never looked back. 💖
 
-You care so naturally, love so effortlessly, and in that, I see a beauty that words can barely capture. Being with you feels like coming back to a place I didn’t know I was missing — calm, comforting, real. Every little moment with you makes my world brighter, my heart lighter, and my soul fuller. 💋
+You love so naturally, care so deeply, and somehow make everything brighter just by existing. Being with you feels like home — calm, safe, and real.
 
-I want you to know, no matter what life brings, my heart will always choose you. You are my safe place, my joy, my love — and being yours is the easiest, happiest thing I’ve ever known. 💋
+No matter what life brings, my heart will always choose you.
 
 Happy Birthday, my love.
 Always yours. Only yours.
-Suyu ❤️💋
+Suyu ❤️
 `;
 
-// Final closing wish
+/* Final Wish */
 const finalContent = `
-Happy Birthday, my irresistible troublemaker! 🎂💖💋
+Happy Birthday, my irresistible troublemaker! 🎂💖
 
-You’re not just my favorite distraction — you’re my obsession, my partner-in-crime, and the reason my heart races for no reason at all. Every time you smile, my brain forgets how to function… and I love it. 😏💋
+You’re my favorite distraction, my sweetest addiction, and the reason my heart races for no reason at all.
 
-I hope your day is as dangerously handsome, fun, and tempting as you are… and yes, that includes a little extra undivided attention from me. I might even steal a kiss or two when you least expect it. 😘
+I hope your day is as dangerously handsome and magical as you are… and yes, I plan to steal a kiss or two. 😘
 
-You make every moment feel like mischief wrapped in magic. I can’t promise to behave today — after all, birthdays are for spoiling, teasing… and maybe a little trouble together. 😉
-
-Love you more than cake… and trust me, I really mean that. ❤️💖
-You’re my favorite distraction, my sweetest addiction, and the reason I can’t stop smiling.
-Here’s to you, to us, and to every cheeky, flirty, unforgettable moment we’re yet to make. 🔥💖💋
+Here’s to us, to love, to mischief, and to every unforgettable moment ahead. ❤️🔥
 `;
 
-// Typewriter function
+/* Typewriter */
 function typeWriter(text, element, speed=25, callback=null){
     let i=0;
     element.innerHTML="";
     let interval=setInterval(()=>{
         if(i<text.length){
-            element.innerHTML += text[i];
+            element.innerHTML+=text[i];
+            element.scrollTop=element.scrollHeight;
             i++;
         } else{
             clearInterval(interval);
             if(callback) callback();
         }
-    }, speed);
+    },speed);
 }
 
-// Show letter then video
+/* Show Letter */
 function showLetter(){
     document.getElementById("start").style.display="none";
     let letter=document.getElementById("letter");
     letter.style.display="flex";
     let letterText=document.getElementById("letterText");
-    typeWriter(letterContent, letterText, 25, ()=>{
+
+    typeWriter(letterContent,letterText,25,()=>{
         setTimeout(()=>{
             letter.style.display="none";
             let video=document.getElementById("video");
             video.style.display="block";
             video.play();
+
             video.onended=function(){
                 video.style.display="none";
                 showFinal();
@@ -223,23 +251,26 @@ function showLetter(){
     });
 }
 
-// Show final with typewriter + floating emojis
+/* Show Final with Spark Balloons */
 function showFinal(){
     let final=document.getElementById("final");
     final.style.display="flex";
     let finalText=document.getElementById("finalText");
-    typeWriter(finalContent, finalText, 25);
+    typeWriter(finalContent,finalText,25);
 
-    let emojis=["❤️","❤️","❤️","🎂","🎈","🎈","🌹","🌹","💖","💖","💘","🌺","🌷","💝","💋"];
-    setInterval(()=>{
-        let e=document.createElement("div");
-        e.className="emoji";
-        e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
-        e.style.left=Math.random()*100+"vw";
-        e.style.fontSize=(25+Math.random()*40)+"px";
-        document.body.appendChild(e);
-        setTimeout(()=>{ e.remove(); },6000);
-    },200);
+    let items=["❤️","💖","💘","💝","🎈","🎈","✨","✨","💋"];
+    let interval=setInterval(()=>{
+        let s=document.createElement("div");
+        s.className="spark";
+        s.innerHTML=items[Math.floor(Math.random()*items.length)];
+        s.style.left=Math.random()*100+"vw";
+        s.style.bottom="-40px";
+        s.style.fontSize=(30+Math.random()*40)+"px";
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(),5000);
+    },180);
+
+    setTimeout(()=>clearInterval(interval),20000);
 }
 </script>
 
