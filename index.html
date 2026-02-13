@@ -117,7 +117,15 @@ I love you more than words can ever explain 💕
 </div>
 
 <div class="container">
-<video id="video" src="yourvideo.mp4"></video>
+
+  <video id="video" width="80%" controls style="display:none; margin:auto;">
+    <source src="yourvideo.mp4" type="video/mp4">
+  </video>
+
+  <div id="final" class="final">Happy Birthday My Everything 🧡</div>
+
+</div>
+
 <div id="final" class="final">Happy Birthday My Everything ❤️</div>
 </div>
 
@@ -128,6 +136,17 @@ function startLove() {
 
   const letter = document.getElementById("letter");
   letter.style.display = "block";
+  setTimeout(() => {
+  letter.style.display = "none";
+  const video = document.getElementById("video");
+  video.style.display = "block";
+  video.play();
+
+  video.onended = function() {
+    document.getElementById("final").style.display = "block";
+  };
+}, 5000);
+
 
   setTimeout(() => {
     letter.style.opacity = 1;
