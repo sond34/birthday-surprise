@@ -6,189 +6,258 @@
 
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', sans-serif;
 }
 
 body{
-height:100vh;
-background:url("couple-bg.png") no-repeat center center fixed;
-background-size:cover;
-overflow:hidden;
-color:white;
+  height:100vh;
+  background:url("couple-bg.png") no-repeat center center fixed;
+  background-size:cover;
+  overflow:hidden;
+  color:white;
 }
 
 /* Dark overlay */
 body::before{
-content:"";
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
-z-index:-1;
+  content:"";
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.6);
+  z-index:-1;
 }
 
-/* Section layout */
+/* Sections */
 .section{
-position:absolute;
-width:100%;
-height:100%;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-text-align:center;
-padding:20px;
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
 }
 
 .hidden{
-display:none;
+  display:none;
 }
 
 /* Glass box */
 .glass{
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(10px);
-padding:30px;
-border-radius:20px;
-box-shadow:0 0 25px rgba(255,0,150,0.6);
-max-width:420px;
+  background:rgba(255,255,255,0.18);
+  backdrop-filter:blur(12px);
+  padding:35px;
+  border-radius:22px;
+  box-shadow:0 0 30px rgba(255,0,150,0.6);
+  max-width:450px;
 }
 
 /* Buttons */
 button{
-padding:10px 25px;
-margin:10px;
-border:none;
-border-radius:25px;
-cursor:pointer;
-font-size:16px;
+  padding:10px 26px;
+  margin:10px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  font-size:16px;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.1);
 }
 
 .yes{
-background:#ff4da6;
-color:white;
+  background:#ff4da6;
+  color:white;
 }
 
 .no{
-background:white;
-color:#ff4da6;
+  background:white;
+  color:#ff4da6;
 }
 
 /* Video */
 video{
-width:90%;
-max-width:400px;
-border-radius:15px;
-margin-top:20px;
+  width:90%;
+  max-width:400px;
+  border-radius:15px;
+  margin-top:20px;
 }
 
 /* Floating hearts */
 .heart{
-position:absolute;
-animation:float 6s linear infinite;
+  position:absolute;
+  animation:float 6s linear infinite;
 }
 
 @keyframes float{
-0%{transform:translateY(100vh);opacity:0;}
-100%{transform:translateY(-10vh);opacity:1;}
+  0%{transform:translateY(100vh); opacity:0;}
+  100%{transform:translateY(-10vh); opacity:1;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- 🎵 Background Music -->
 <audio id="music" loop>
-<source src="yourvideo.mp4" type="audio/mp4">
+  <source src="soft-music.mp3" type="audio/mp3">
 </audio>
 
-<!-- START -->
+<!-- 1️⃣ START -->
 <div id="start" class="section">
-<div class="glass">
-<h2>Will you open your surprise? 💌</h2>
-<br>
-<button class="yes" onclick="goLetter()">Yes 💖</button>
-<button class="no" onclick="moveNo(this)">No 🙈</button>
-</div>
+  <div class="glass">
+    <h2>Before we continue… 💕</h2>
+    <p style="margin:15px 0;">Be honest with me 😌</p>
+    <p>Do you love me more than everything else? 😏</p>
+    <br>
+    <button class="yes" onclick="goLetter()">YES 💖</button>
+    <button class="no" onclick="moveNo(this)">NO 🙈</button>
+  </div>
 </div>
 
-<!-- LETTER -->
+<!-- 2️⃣ LETTER -->
 <div id="letter" class="section hidden">
-<div class="glass">
-<h2>For You ❤️</h2>
-<p style="margin-top:15px;">
-You are the most beautiful part of my life.<br><br>
-Every moment with you feels magical.<br><br>
-Your smile lights up my world.<br><br>
-Happy Birthday My Love 💖
-</p>
-<br>
-<button class="yes" onclick="goVideo()">Next 🎥</button>
-</div>
+  <div class="glass">
+    <h2>For You ❤️</h2>
+    <p style="margin-top:15px;">
+      You are the most beautiful part of my life.<br><br>
+      Every moment with you feels warm, safe, and magical.<br><br>
+      Your smile heals me.<br>
+      Your presence feels like home.<br><br>
+      Happy Birthday, my love 💖
+    </p>
+    <br>
+    <button class="yes" onclick="goVideo()">Next 🎥</button>
+  </div>
 </div>
 
-<!-- VIDEO -->
+<!-- 3️⃣ VIDEO -->
 <div id="videoSection" class="section hidden">
-<div class="glass">
-<h2>Our Beautiful Moment 💞</h2>
-<video controls>
-<source src="yourvideo.mp4" type="video/mp4">
-</video>
-<br>
-<button class="yes" onclick="goFinal()">Final Surprise ✨</button>
-</div>
+  <div class="glass">
+    <h2>Our Moment 💞</h2>
+    <video controls>
+      <source src="yourvideo.mp4" type="video/mp4">
+    </video>
+    <br>
+    <button class="yes" onclick="goFinal()">Final Surprise ✨</button>
+  </div>
 </div>
 
-<!-- FINAL -->
+<!-- 4️⃣ FINAL -->
 <div id="final" class="section hidden">
-<div class="glass">
-<h2>Forever & Always ❤️</h2>
-<p style="margin-top:15px;">
-You are my greatest blessing.<br><br>
-I love you endlessly 💖✨
-</p>
-</div>
+  <div class="glass">
+    <h2>Forever & Always ❤️</h2>
+
+    <p style="margin-top:15px;">
+      From the day you came into my life,<br>
+      everything became brighter.<br><br>
+      I choose you — today, tomorrow, always.<br>
+      You are my peace, my happiness, my forever. 💖
+    </p>
+
+    <br>
+
+    <h3>🎂 Countdown to Your Birthday 🎂</h3>
+    <p id="countdown" style="margin-top:10px; font-size:18px;"></p>
+
+    <br>
+
+    <button class="yes" onclick="showSecret()">Unlock Secret Message 🔐</button>
+
+    <div id="secretMessage" style="display:none; margin-top:20px;">
+      <p>
+        My sweetest love… ❤️<br><br>
+        If I could give you one gift,<br>
+        it would be the ability to see yourself<br>
+        through my eyes.<br><br>
+        You would know how deeply,<br>
+        endlessly, and purely you are loved. 💞<br><br>
+        You are not just my love —<br>
+        you are my forever.
+      </p>
+    </div>
+
+  </div>
 </div>
 
 <script>
 
+/* ❤️ Navigation */
 function goLetter(){
-document.getElementById("start").classList.add("hidden");
-document.getElementById("letter").classList.remove("hidden");
-document.getElementById("music").play();
-createHearts();
+  document.getElementById("start").classList.add("hidden");
+  document.getElementById("letter").classList.remove("hidden");
+  document.getElementById("music").play();
+  createHearts();
 }
 
 function goVideo(){
-document.getElementById("letter").classList.add("hidden");
-document.getElementById("videoSection").classList.remove("hidden");
+  document.getElementById("letter").classList.add("hidden");
+  document.getElementById("videoSection").classList.remove("hidden");
 }
 
 function goFinal(){
-document.getElementById("videoSection").classList.add("hidden");
-document.getElementById("final").classList.remove("hidden");
+  document.getElementById("videoSection").classList.add("hidden");
+  document.getElementById("final").classList.remove("hidden");
+  startCountdown();
 }
 
+/* 🙈 NO button runs away */
 function moveNo(btn){
-btn.style.position="absolute";
-btn.style.top=Math.random()*80+"%";
-btn.style.left=Math.random()*80+"%";
+  btn.style.position="absolute";
+  btn.style.top=Math.random()*80+"%";
+  btn.style.left=Math.random()*80+"%";
 }
 
+/* 💖 Hearts */
 function createHearts(){
-for(let i=0;i<25;i++){
-let heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="💖";
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=Math.random()*20+15+"px";
-heart.style.animationDuration=(Math.random()*3+3)+"s";
-document.body.appendChild(heart);
+  let count=0;
+  let interval=setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(Math.random()*20+15)+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+    count++;
+    if(count>30) clearInterval(interval);
+  },200);
 }
+
+/* 🔐 Secret */
+function showSecret(){
+  document.getElementById("secretMessage").style.display="block";
+}
+
+/* 🎂 Countdown – 18 March */
+function startCountdown(){
+  let birthday = new Date(2026, 2, 18); // 18 March
+
+  setInterval(()=>{
+    let now = new Date().getTime();
+    let diff = birthday - now;
+
+    if(diff < 0){
+      document.getElementById("countdown").innerHTML =
+        "🎉 Happy Birthday My Love! 🎉";
+      return;
+    }
+
+    let d = Math.floor(diff / (1000*60*60*24));
+    let h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    let m = Math.floor((diff%(1000*60*60))/(1000*60));
+    let s = Math.floor((diff%(1000*60))/1000);
+
+    document.getElementById("countdown").innerHTML =
+      d+" Days "+h+" Hours "+m+" Minutes "+s+" Seconds";
+  },1000);
 }
 
 </script>
