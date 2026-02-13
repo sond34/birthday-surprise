@@ -233,8 +233,18 @@ function createHearts(){
 
 /* 🔐 Secret */
 function showSecret(){
-  document.getElementById("secretMessage").style.display = "block";
-}
+  let s = document.getElementById("secretMessage");
+s.style.display = "block";
+s.style.opacity = 0;
+let o = 0;
+let fade = setInterval(()=>{
+  if(o < 1){
+    o += 0.05;
+    s.style.opacity = o;
+  } else {
+    clearInterval(fade);
+  }
+}, 50);
 
 /* 🎂 Countdown – 18 March */
 function startCountdown(){
